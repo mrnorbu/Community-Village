@@ -1,0 +1,94 @@
+ <!-- Navigation Header -->
+ <header class="bg-white shadow-lg">
+    <nav class="max-w-6xl mx-auto px-4">
+        <section class="flex justify-between">
+            <!-- Logo -->
+            <figure class="flex flex-col -ml-4">
+                <a href="#" class="flex flex-col items-center py-2">
+                    <img src="assets/images/general/tourism_logo.svg" alt="Tourism Logo" class="h-10">
+                    <span class="text-xs text-[#1C2A0E]">SIKKIM TOURISM</span>
+                </a>
+            </figure>
+
+
+            <!-- Primary Nav -->
+            <ul class="hidden md:flex items-center">
+          
+                <li><a href="#" class="py-4 px-5 text-black hover:text-[#1C2A0E] hover:font-medium active:text-[#2A3F15] transition-all">Home</a></li>
+                <li><a href="#" class="py-4 px-5 text-black hover:text-[#1C2A0E] hover:font-medium active:text-[#2A3F15] transition-all">Villages</a></li>
+                <li><a href="#" class="py-4 px-5 text-black hover:text-[#1C2A0E] hover:font-medium active:text-[#2A3F15] transition-all">Homestays</a></li>
+                <li><a href="#" class="py-4 px-5 text-black hover:text-[#1C2A0E] hover:font-medium active:text-[#2A3F15] transition-all">Activities</a></li>
+                <li><a href="#" class="py-4 px-5 text-black hover:text-[#1C2A0E] hover:font-medium active:text-[#2A3F15] transition-all">Local Products</a></li>
+                <li><a href="#" class="py-4 px-5 text-black hover:text-[#1C2A0E] hover:font-medium active:text-[#2A3F15] transition-all">Events</a></li>
+                <li><a href="#" class="ml-6 px-8 py-2.5 border-2 border-black rounded-full hover:bg-black hover:text-white active:bg-[#1C2A0E] active:border-[#1C2A0E] transition-all">Login</a></li>
+            </ul>
+
+            <!-- Mobile menu button -->
+            <button class="md:hidden outline-none mobile-menu-button z-50" aria-label="Toggle menu" onclick="toggleMenu()">
+                <!-- Hamburger Icon SVG -->
+                <svg class="w-6 h-6 text-black hover:text-blue-500"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </section>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden fixed inset-0 bg-white transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+            <div class="h-full flex flex-col">
+                <!-- Menu Header with Close Button -->
+                <div class="flex items-center justify-between px-6 py-4 border-b">
+                    <div class="flex flex-col">
+                        <img src="assets/images/general/tourism_logo.svg" alt="Tourism Logo" class="h-8">
+                        <span class="text-xs text-gray-600 mt-0.5">Tourism and Civil Aviation Department</span>
+                    </div>
+                    <button onclick="toggleMenu()" class="mobile-menu-button p-2 focus:outline-none">
+                        <svg class="w-6 h-6 text-[#1C2A0E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Menu Links -->
+                <nav class="flex-1 px-6 py-8 overflow-y-auto">
+                    <div class="space-y-6">
+                        <a href="village.html" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            Villages
+                        </a>
+                        <a href="#homestays" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            Home Stays
+                        </a>
+                        <a href="#activities" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            Activities
+                        </a>
+                        <a href="#products" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            Products
+                        </a>
+                        <a href="#events" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            Events
+                        </a>
+                        <a href="#about" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            About Us
+                        </a>
+                        <a href="#contact" class="block text-2xl font-medium text-[#1C2A0E] hover:text-[#2A3F15] transition-colors">
+                            Contact
+                        </a>
+                    </div>
+                </nav>
+                
+                <!-- Bottom Section with Login Button -->
+                <div class="px-6 py-6 border-t">
+                    <button class="w-full bg-[#1C2A0E] text-white rounded-full py-3 text-lg font-medium hover:bg-[#2A3F15] transition-colors">
+                        Login
+                    </button>
+                </div>
+         </div>
+    </div>
+    </nav>
+</header>

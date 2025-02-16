@@ -20,16 +20,24 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+           "assets": [
+  "src/assets",
+  {
+    "glob": "**/*",
+    "input": "public",
+    "output": "/"
+  }
+],
             "styles": [
+              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
+              "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js"
+            ],
+
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -89,10 +97,15 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+          "scripts": [
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/owl.carousel/dist/owl.carousel.min.js"
+          ],
+          "styles": [
+            "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
+            "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
+            "src/styles.css"
+          ]
           }
         }
       }
