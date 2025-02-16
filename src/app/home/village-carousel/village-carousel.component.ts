@@ -44,7 +44,7 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
   ngAfterViewInit(): void {
     if (typeof document !== 'undefined') {
       console.log('Initializing Owl Carousel...');
-      const carouselElement = $('.owl-carousel');
+      const carouselElement = $('.village-carousel');
       
       if (carouselElement.length === 0) {
         console.error('Owl Carousel element not found!');
@@ -82,7 +82,7 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
   ngOnDestroy() {
     if (typeof document !== 'undefined') {
       // Destroy Owl Carousel instance
-      $('.owl-carousel').trigger('destroy.owl.carousel');
+      $('.village-carousel').trigger('destroy.owl.carousel');
     }
   }
 

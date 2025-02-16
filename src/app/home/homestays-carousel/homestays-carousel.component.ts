@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewInit,OnDestroy} from '@angular/core';
+declare var $: any; // Declare jQuery
 
 @Component({
   selector: 'app-homestays-carousel',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homestays-carousel.component.css'],
   imports:[CommonModule]
 })
-export class HomestaysCarouselComponent implements OnInit {
+export class HomestaysCarouselComponent implements OnInit ,AfterViewInit,OnDestroy{
 
   constructor() { }
 
@@ -86,6 +87,52 @@ export class HomestaysCarouselComponent implements OnInit {
       region: 'East Sikkim'
     }
   ];
+
+
+  ngAfterViewInit(): void {
+    if (typeof document !== 'undefined') {
+      console.log('Initializing Owl Carousel...');
+      const carouselElement = $('.homestays-carousel');
+      
+      if (carouselElement.length === 0) {
+        console.error('Owl Carousel element not found!');
+        return;
+      }
+
+      // Initialize Owl Carousel
+      carouselElement.owlCarousel({
+        loop:true, //loop the carousel
+        margin:5,  //margin between item 
+        //nav:true,  //add next and prev button
+        dots:true,  //add dots for items
+        //rtl:true,  //Owl will change direction from Right to left.
+        autoplay: true, // Enable auto-move
+        autoplayTimeout: 3000, // Time between auto-moves (in milliseconds)
+        autoplayHoverPause: true ,// Pause on hover
+        
+        responsive:{
+            0:{
+                items:2
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:4
+            }
+        }
+    });
+    console.log('Owl Carousel initialized successfully');
+  }
+}
+
+ 
+  ngOnDestroy() {
+    if (typeof document !== 'undefined') {
+      // Destroy Owl Carousel instance
+      $('.homestays-carousel').trigger('destroy.owl.carousel');
+    }
+  }
 
 
   /*Dynamic color to regions*/

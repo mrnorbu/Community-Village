@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { GridValuesComponent } from './grid-values.component';
+import { UpcomingEventsComponent } from './upcoming-events.component';
 
-describe('GridValuesComponent', () => {
-  let component: GridValuesComponent;
-  let fixture: ComponentFixture<GridValuesComponent>;
+describe('UpcomingEventsComponent', () => {
+  let component: UpcomingEventsComponent;
+  let fixture: ComponentFixture<UpcomingEventsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GridValuesComponent ]
+      declarations: [ UpcomingEventsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GridValuesComponent);
+    fixture = TestBed.createComponent(UpcomingEventsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
