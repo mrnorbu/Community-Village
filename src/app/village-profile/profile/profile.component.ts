@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { NavBarComponent } from '../../home/nav-bar/nav-bar.component';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
 
 declare var $: any; // Declare jQuery
 
@@ -11,7 +11,7 @@ declare var $: any; // Declare jQuery
   styleUrls: ['./profile.component.css'],
   imports:[CommonModule,NavBarComponent,NgxPaginationModule]
 })
-export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProfileComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
@@ -48,48 +48,6 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngAfterViewInit(): void {
-    if (typeof document !== 'undefined') {
-      console.log('Initializing Owl Carousel...');
-      const carouselElement = $('.profile-imgs');
-      
-      if (carouselElement.length === 0) {
-        console.error('Owl Carousel element not found!');
-        return;
-      }
-
-      // Initialize Owl Carousel
-      carouselElement.owlCarousel({
-        //loop:true, //loop the carousel
-        margin:5,  //margin between item 
-        //nav:true,  //add next and prev button
-        dots:true,  //add dots for items
-        //rtl:true,  //Owl will change direction from Right to left.
-        autoplay: true, // Enable auto-move
-        autoplayTimeout: 3000, // Time between auto-moves (in milliseconds)
-        autoplayHoverPause: true ,// Pause on hover
-        
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items:1
-            },
-            1000:{
-                items:1
-            }
-        }
-    });
-    console.log('Owl Carousel initialized successfully');
-  }
-}
-
- 
-  ngOnDestroy() {
-    if (typeof document !== 'undefined') {
-      // Destroy Owl Carousel instance
-      $('.profile-imgs').trigger('destroy.owl.carousel');
-    }
   }
 
 
@@ -109,4 +67,6 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
     clickedImage.src = temp;
   }
 
+
+  
 }

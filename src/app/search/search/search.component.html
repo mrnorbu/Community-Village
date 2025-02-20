@@ -38,6 +38,14 @@
               </svg>
               Events
           </button>
+           <!-- Clear Button -->
+           <label class="block text-sm font-medium text-transparent mb-2">Clear</label>
+           <button type="button" id="clearButton" class="clear-btn cursor-pointer px-4 py-2 font-semibold rounded bg-blue-500 text-white hover:bg-blue-600 hover:text-amber-50 transition-all text-sm flex items-end gap-2">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+               </svg>
+               Clear Filters
+           </button>
       </div>
 
       <!-- Search Form: Contains all search input fields -->
@@ -46,7 +54,7 @@
           <div class="md:col-span-3">
               <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
               <div class="relative">
-                  <select id="location" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
+                  <select id="location" class="cursor-pointer w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
                       <option value="">Select Region</option>
                       <option value="north">North Sikkim</option>
                       <option value="south">South Sikkim</option>
@@ -64,7 +72,7 @@
           <div class="md:col-span-3">
               <label class="block text-sm font-medium text-gray-700 mb-2">Village</label>
               <div class="relative">
-                  <select id="village" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
+                  <select id="village" class="w-full cursor-pointer pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
                       <option value="">Select Village</option>
                       <option *ngFor="let village of Villages"  [value]="village.name">{{village.name}}</option>
                   </select>
@@ -91,14 +99,14 @@
               </div>
           </div>
 
-          <!-- Clear Button -->
+          <!-- Search Button -->
           <div class="md:col-span-2">
-              <label class="block text-sm font-medium text-transparent mb-2">Clear</label>
-              <button type="button" id="clearButton" class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                  </svg>
-                  Clear Filters
+              <label class="block text-sm font-medium text-transparent mb-2">Search</label>
+              <button type="button" id="clearButton" class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg text-gray-600 cursor-pointer hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 10l6 6m-4-6a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>           
+                  Search
               </button>
           </div>
       </form>
@@ -125,7 +133,7 @@
                             <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                                 <h4 class="text-lg font-semibold">{{village.name}}</h4>
                                 <span class="inline-block px-3 py-1 rounded-full text-xs font-medium w-fit hover:text-white"
-                                 [ngClass]="getDynamicClass(i+1)">{{village.region}}</span>
+                                 [ngClass]="getClass(i+1)">{{village.region}}</span>
                             </div>
                             <p class="text-gray-700 mt-2 line-clamp-2 text-sm">
                                 {{village.description}}
@@ -169,7 +177,7 @@
             <div class="flex-grow">
                 <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                     <h4 class="text-lg font-semibold">{{homestay.name}}</h4>
-                    <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 w-fit hover:text-white" [ngClass]="getDynamicClass(i+1)">{{homestay.location}}</span>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 w-fit hover:text-white" [ngClass]="getClass(i+1)">{{homestay.location}}</span>
                 </div>
                 <p class="text-gray-700 mt-2 line-clamp-2 text-sm">{{homestay.description}}</p>
                 <div class="mt-2 flex flex-wrap gap-2">
@@ -215,10 +223,10 @@
                 <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                     <h4 class="text-lg font-semibold">{{activity.name}}</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 hover:text-white" [ngClass]="getDynamicClass(i+1)">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 hover:text-white" [ngClass]="getClass(i+1)">
                            {{activity.location}}
                         </span>
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 hover:text-white" [ngClass]="getDynamicClass(i+2)">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 hover:text-white" [ngClass]="getClass(i+2)">
                             {{activity.village}}
                         </span>
                     </div>
@@ -288,10 +296,10 @@
                 <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                     <h4 class="text-lg font-semibold">{{product.name}}</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="inline-block px-3 py-1 hover:text-white rounded-full text-xs font-medium bg-green-500/10 text-green-500" [ngClass]="getDynamicClass(i+1)">
+                        <span class="inline-block px-3 py-1 hover:text-white rounded-full text-xs font-medium bg-green-500/10 text-green-500" [ngClass]="getClass(i+1)">
                             {{product.location}}
                         </span>
-                        <span class="inline-block px-3 py-1 hover:text-white rounded-full text-xs font-medium bg-blue-500/10 text-blue-500" [ngClass]="getDynamicClass(i+2)">
+                        <span class="inline-block px-3 py-1 hover:text-white rounded-full text-xs font-medium bg-blue-500/10 text-blue-500" [ngClass]="getClass(i+2)">
                             {{product.village}}
                         </span>
                     </div>
@@ -350,10 +358,10 @@
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                         <h4 class="text-lg font-semibold">{{event.name}}</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 hover:text-white" [ngClass]="getDynamicClass(i+1)">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 hover:text-white" [ngClass]="getClass(i+1)">
                                 {{event.location}}
                             </span>
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 hover:text-white" [ngClass]="getDynamicClass(i+2)">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 hover:text-white" [ngClass]="getClass(i+2)">
                                 {{event.venue}}
                             </span>
                         </div>

@@ -13,7 +13,7 @@
       <div class="">
 
       <div class="item col-span-1 grid gap-4">
-          <div class="px-2 cursor-pointer" *ngFor="let Image of Images.slice(1)| paginate: { itemsPerPage: 2, currentPage: p }">
+          <div class="px-2 cursor-pointer hover:" *ngFor="let Image of Images.slice(1)| paginate: { itemsPerPage: 2, currentPage: p }">
               <img 
                  [src]="Image.src"
                  [alt]="Image.alt"
@@ -22,8 +22,12 @@
               />
           </div>
       </div>
-      <div class="pt-2 justify-center flex">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <div class="pt-2 justify-center flex ">
+      <pagination-controls class=" !text-blue-800 text-center items-center self-center font-bold text-2xl"
+       previousLabel="&lt;"
+       nextLabel="&gt;"
+      (pageChange)="p = $event">
+      </pagination-controls>
     </div>
    
     </div>

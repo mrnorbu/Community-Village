@@ -7,46 +7,52 @@
             alt="Scenic view of Sikkim mountains and traditional house" 
             class="w-full h-full object-cover"
         />
-
-        <div class="flex flex-wrap w-64 h-64 border p-2">
-            <div class="bg-blue-500 p-4 order-first">Upper Left</div>
-            <div class="bg-gray-200 p-4 flex-1"></div>
-            <div class="bg-gray-200 p-4 flex-1"></div>
-            <div class="bg-red-500 p-4 order-last">Lower Right</div>
-       </div>
-          
     </div>
 
+    <!---
+    <div class="relative flex justify-center mt-4 ">
+    <img 
+            src="assets/images/general/sunawlo sikkim-Photoroom.png"
+            alt="Sikkim Govt. Logo" 
+            class="h-30 w-40"
+        />
+ </div>
+-->
+ 
 
-    <!-- Content -->
-    <div class="relative h-full max-w-6xl mx-auto px-4 flex flex-col justify-center z-10">
 
-        <div class="max-w-3xl">+
+    <div class="absolute bg-white/10 shadow-sky-50 shadow-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-3xl lg:h-[26rem] md:w-64 md:h-40 p-4">
+        <!-- Top Left Corner -->
+        <div class="absolute top-0 left-0 w-1/3 border-t-5 border-white"></div>
+        <div class="absolute top-0 left-0 h-1/2 border-l-5 border-white"></div>
+      
+        <!-- Bottom Right Corner -->
+        <div class="absolute bottom-0 right-0 w-1/3 border-b-5 border-white"></div>
+        <div class="absolute bottom-0 right-0 h-1/2 border-r-5 border-white"></div>
+      
+         <!-- Content -->
+    <div class="text-center relative h-full max-w-6xl mx-auto px-4 flex flex-col justify-center z-10">
+
+        <div class="max-w-3xl">
             <h1 class="text-5xl md:text-5xl sm:text-3xl text-white font-semibold mb-6 leading-tight">
                 Stay Local. Explore Nature. Experience Authentic Traditions.
             </h1>
             <p class="text-sm md:text-base lg:text-xl text-white/90 mb-4 max-w-full md:max-w-2xl">
                 Immerse yourself in the beauty of Sikkim's villages, where tradition meets modern exploration. Find cozy homestays, experience cultural heritage, enjoy adventure activities, and shop for handcrafted local treasures—all while directly supporting the community. Your journey to authentic Sikkim starts here!
             </p>
-            <div class="flex flex-wrap gap-4">
-                <a href="village.html" class="px-4 py-2 bg-white/20 hover:bg-white/60 text-white rounded-full transition duration-300 text-xs md:text-sm lg:text-base">
-                    Villages
-                </a>
-                <a href="#homestays" class="px-4 py-2 bg-white/20 hover:bg-white/60 text-white rounded-full transition duration-300 text-xs md:text-sm lg:text-base">
-                    Home Stays
-                </a>
-                <a href="#activities" class="px-4 py-2 bg-white/20 hover:bg-white/60 text-white rounded-full transition duration-300 text-xs md:text-sm lg:text-base">
-                    Activities
-                </a>
-                <a href="#products" class="px-4 py-2 bg-white/20 hover:bg-white/60 text-white rounded-full transition duration-300 text-xs md:text-sm lg:text-base">
-                    Products
-                </a>
-                <a href="#events" class="px-4 py-2 bg-white/20 hover:bg-white/60 text-white rounded-full transition duration-300 text-xs md:text-sm lg:text-base">
-                    Events
-                </a>
-            </div>
         </div>
+        <button class="cursor-pointer border-2 w-40 flex  justify-center self-center border-white text-white px-6 py-2 text-lg font-semibold rounded-full backdrop-blur-md bg-white/10 hover:bg-white/20 hover:border-white/50 transition-all duration-300 ease-in-out">
+            Explore
+        </button>
+             
     </div>
+
+ 
+
+ </div>
+
+
+   
 </section>
 
 <!-- After Hero Section -->
@@ -142,7 +148,7 @@
         <!-- Search Button -->
         <div class="md:col-span-2">
             <label class="block text-sm font-medium text-transparent mb-2">Search</label>
-            <button type="submit" class="w-full bg-[#1C2A0E] text-white rounded-lg py-2.5 hover:bg-[#2A3F15] transition-all flex items-center justify-center gap-2">
+            <button routerLink="/search" routerLinkActive="router-link-active"  type="submit" class="w-full bg-[#1C2A0E] text-white rounded-lg py-2.5 hover:bg-[#2A3F15] transition-all flex items-center justify-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>

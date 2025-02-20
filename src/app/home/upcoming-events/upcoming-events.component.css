@@ -1,0 +1,32 @@
+/* Target all pagination items except 'Previous' and 'Next' */
+::ng-deep .ngx-pagination li:not(.pagination-previous):not(.pagination-next) {
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove borders */
+    padding: 0; /* Remove padding */
+    margin: 0 8px; /* Adjust spacing between dots */
+  }
+  
+  /* Hide the original page numbers */
+  ::ng-deep .ngx-pagination li:not(.pagination-previous):not(.pagination-next) a,
+  ::ng-deep .ngx-pagination li:not(.pagination-previous):not(.pagination-next) span {
+    font-size: 0; /* Hide text */
+    position: relative; /* For positioning the dot */
+  }
+  
+  /* Add a dot before each pagination link */
+  ::ng-deep .ngx-pagination li:not(.pagination-previous):not(.pagination-next) a::before,
+  ::ng-deep .ngx-pagination li:not(.pagination-previous):not(.pagination-next) span::before {
+    content: '•'; /* Unicode character for dot */
+    font-size: 50px; /* Adjust dot size */
+    color: grey; /* Dot color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the dot */
+  }
+  
+  /* Remove hover effects */
+  ::ng-deep .ngx-pagination li:not(.pagination-previous):not(.pagination-next):hover {
+    background-color: transparent; /* No background change on hover */
+  }
+  

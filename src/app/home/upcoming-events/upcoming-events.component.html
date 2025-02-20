@@ -30,16 +30,13 @@
           <!-- Right Side - Events Timeline with Swiper -->
           <div class="md:w-1/2">
               <!-- Events Carousel -->
-              <div class="upcoming-events-carousel owl-carousel owl-theme h-full flex flex-col">
+              <div class="h-full flex flex-col">
             
-
-                      <!-- Event Pages -->
-                      <div class="item" *ngFor="let Event of Events">
                           <div class="relative pl-6 before:content-[''] before:absolute before:left-[5px] before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-[#1C2A0E] before:to-[#1C2A0E]/20">
                              
                             
-                            <!-- Event 1 -->
-                              <div class="relative mt-2 mb-3" *ngFor="let subevent of Event.subEvent">
+                            <!-- Event -->
+                              <div class="relative mt-2 mb-3" *ngFor="let subevent of Events| paginate: { itemsPerPage: 4, currentPage: page }; let i=index">
 
                                   <!-- Event Date -->
                                   <div class="inline-block px-2 py-0.5 rounded-full bg-[#1C2A0E]/5 text-[#1C2A0E] text-xs font-medium mb-1">
@@ -69,11 +66,17 @@
                                           </svg>
                                       </a>
                                   </div>
-
-                                
-
                               </div>
+
+                          
+
+
                           </div>
+                          <pagination-controls class="flex self-center font-bold" (pageChange)="page = $event"
+                          previousLabel="&lt;" 
+                          nextLabel="&gt;" 
+                          [directionLinks]="true"
+                          ></pagination-controls>
                       </div>
 
 
@@ -81,5 +84,4 @@
                   </div>
               </div>
           </div>
-      </div>
 </section>
