@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance} from '../../utils/utils'; 
 import { VillagesService } from '../../services/villages.service';
+import { RouterLink } from '@angular/router';
 declare var $: any; // Declare jQuery
 
 @Component({
   selector: 'app-village-carousel',
   templateUrl: './village-carousel.component.html',
   styleUrls: ['./village-carousel.component.css'],
-  imports:[CommonModule]
+  imports:[CommonModule,RouterLink]
 })
 export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private villageService:VillagesService){

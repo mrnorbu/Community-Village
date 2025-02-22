@@ -9,6 +9,7 @@ import { ActivitiesService } from '../../services/activities.service';
 import { EventsService } from '../../services/events.service';
 import { VillagesService } from '../../services/villages.service';
 import { IsNumberPipe } from '../../pipes/isNumber.pipe';
+import { ApiService } from '../../services/api.service';
 
 
 @Component({
@@ -19,9 +20,12 @@ import { IsNumberPipe } from '../../pipes/isNumber.pipe';
 })
 export class SearchComponent implements OnInit {
 
-constructor(private homestayService :HomestaysService,private productService:ProductsService,
-  private activityService:ActivitiesService,private eventService:EventsService,
-  private villageService:VillagesService
+constructor(private homestayService :HomestaysService,
+  private productService:ProductsService,
+  private activityService:ActivitiesService,
+  private eventService:EventsService,
+  private villageService:VillagesService,
+  private apiService : ApiService
 ) { }
 
 Homestays:any[]=[];
@@ -40,6 +44,11 @@ today= new Date();
         this.Activities=this.activityService.getActivities();
         this.Events =this.eventService.getEvent();
         this.Villages=this.villageService.getVillages();
+
+        // this.apiService.getData("/districts")
+        // .subscribe((data: any) => {
+        //   console.log(data);
+        // });
       }
 
  

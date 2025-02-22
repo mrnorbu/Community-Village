@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivitiesService } from '../../services/activities.service';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
+import { RouterLink } from '@angular/router';
 declare var $: any; // Declare jQuery
 
 @Component({
   selector: 'app-adventures',
   templateUrl: './adventures.component.html',
   styleUrls: ['./adventures.component.css'],
-  imports:[CommonModule]
+  imports:[CommonModule,RouterLink]
 })
 export class AdventuresComponent implements OnInit ,AfterViewInit,OnDestroy{
 
