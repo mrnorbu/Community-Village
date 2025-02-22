@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { NavBarComponent } from '../../home/nav-bar/nav-bar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 declare var $: any; // Declare jQuery
@@ -9,7 +8,7 @@ declare var $: any; // Declare jQuery
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  imports:[CommonModule,NavBarComponent,NgxPaginationModule]
+  imports:[CommonModule,NgxPaginationModule]
 })
 export class ProfileComponent implements OnInit, AfterViewInit {
 

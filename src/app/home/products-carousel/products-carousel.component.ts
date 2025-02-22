@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
 import { ProductsService } from '../../services/products.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products-carousel',
   templateUrl: './products-carousel.component.html',
   styleUrls: ['./products-carousel.component.css'],
-  imports:[CommonModule]
+  imports:[CommonModule,RouterLink]
 })
 export class ProductsCarouselComponent implements OnInit, AfterViewInit, OnDestroy  {
 

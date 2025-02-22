@@ -26,42 +26,42 @@
             <!-- Primary Nav -->
             <ul class="hidden md:flex items-center gap-1">
           
-                <li><a routerLink="/" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
-                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm font-semibold hover:bg-gray-50 active:text-[#2A3F15] transition-all 
+                <li><a [routerLink]="'/'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
+                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm  hover:bg-gray-50 active:text-[#2A3F15] transition-all 
                            after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 after:ease-in-out 
                            hover:after:w-full hover:after:left-0">
-                           <fa-icon [icon]="faHome"></fa-icon>
+                         
                            Home</a>
                 </li>
                 <li><a [routerLink]="'/village'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
-                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm font-semibold hover:bg-gray-50 active:text-[#2A3F15] transition-all 
+                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm  hover:bg-gray-50 active:text-[#2A3F15] transition-all 
                            after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 after:ease-in-out 
                            hover:after:w-full hover:after:left-0">
-                           <fa-icon [icon]="faTree"></fa-icon> Villages</a>
+                        Villages</a>
                 </li>
-                <li><a [routerLink]="'/search'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
-                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm font-semibold hover:bg-gray-50 active:text-[#2A3F15] transition-all 
+                <li><a [routerLink]="'/activity'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
+                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm  hover:bg-gray-50 active:text-[#2A3F15] transition-all 
                            after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 after:ease-in-out 
                            hover:after:w-full hover:after:left-0">
-                           <fa-icon [icon]="faSearch"></fa-icon>  Search</a>
+                            Activity</a>
                 </li>
-                <li><a 
-                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm font-semibold hover:bg-gray-50 active:text-[#2A3F15] transition-all 
+                <li><a [routerLink]="'/homestay'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
+                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm  hover:bg-gray-50 active:text-[#2A3F15] transition-all 
                            after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 after:ease-in-out 
-                           hover:after:w-full hover:after:left-0">
-                           <fa-icon [icon]="faBicycle"></fa-icon> Activities</a>
+                            hover:after:w-full hover:after:left-0">
+                           Homestay</a>
                 </li>
-                <li><a
-                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm font-semibold hover:bg-gray-50 active:text-[#2A3F15] transition-all 
+                <li><a [routerLink]="'/product'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
+                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm  hover:bg-gray-50 active:text-[#2A3F15] transition-all 
                            after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 after:ease-in-out 
                            hover:after:w-full hover:after:left-0">
-                           <fa-icon [icon]="faShoppingBasket"></fa-icon>  Local Products</a>
+                           Local Product</a>
                 </li>
-                <li><a 
-                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm font-semibold hover:bg-gray-50 active:text-[#2A3F15] transition-all 
+                <li><a [routerLink]="'/event'" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: true }"
+                    class="relative py-2 px-5 text-black hover:text-[#1C2A0E] rounded-b-sm  hover:bg-gray-50 active:text-[#2A3F15] transition-all 
                            after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 after:ease-in-out 
                            hover:after:w-full hover:after:left-0">
-                           <fa-icon [icon]="farCalendarAlt"></fa-icon> Events</a>
+                       Event</a>
                 </li>
                 <li><a href="#" class="ml-6 px-8 py-2.5 border-2 border-black rounded-full hover:bg-black hover:text-white active:bg-[#1C2A0E] active:border-[#1C2A0E] transition-all">Login</a></li>
             </ul>

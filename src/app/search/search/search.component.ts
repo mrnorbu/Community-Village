@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { NavBarComponent } from '../../home/nav-bar/nav-bar.component';
 import { GlobalEnums } from '../../globalEnums.enum';
 import { getDynamicClass } from '../../utils/utils';
 import { HomestaysService } from '../../services/homestays.service';
@@ -9,12 +8,14 @@ import { ProductsService } from '../../services/products.service';
 import { ActivitiesService } from '../../services/activities.service';
 import { EventsService } from '../../services/events.service';
 import { VillagesService } from '../../services/villages.service';
+import { IsNumberPipe } from '../../pipes/isNumber.pipe';
+
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  imports:[CommonModule,NgxPaginationModule,NavBarComponent]
+  imports:[CommonModule,NgxPaginationModule,IsNumberPipe]
 })
 export class SearchComponent implements OnInit {
 

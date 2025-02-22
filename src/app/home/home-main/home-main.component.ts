@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { HeroSectionComponent } from '../hero-section/hero-section.component';
 import { AdventuresComponent } from '../adventures/adventures.component';
 import { HomestaysCarouselComponent } from '../homestays-carousel/homestays-carousel.component';
@@ -11,7 +10,7 @@ import { VillageCarouselComponent } from '../village-carousel/village-carousel.c
   selector: 'app-home-main',
   templateUrl: './home-main.component.html',
   styleUrls: ['./home-main.component.css'],
-  imports:[NavBarComponent,HeroSectionComponent,AdventuresComponent,HomestaysCarouselComponent,
+  imports:[HeroSectionComponent,AdventuresComponent,HomestaysCarouselComponent,
     ProductsCarouselComponent,UpcomingEventsComponent,VillageCarouselComponent]
 })
 export class HomeMainComponent implements OnInit {
