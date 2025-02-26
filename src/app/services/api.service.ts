@@ -9,7 +9,7 @@ import { environment } from '../../enviroments/enviroment';
 })
 export class ApiService {
   private apiUrl: string = environment.apiUrl;
-  private defaultTimeout = 300000; // 5 minutes in milliseconds
+  private defaultTimeout = 100000; // 100 seconds 
 
   constructor(private http: HttpClient) {}
 

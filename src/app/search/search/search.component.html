@@ -38,7 +38,7 @@
           </button>
            <!-- Clear Button -->
            <label class="block text-sm font-medium text-transparent mb-2">Clear</label>
-           <button type="button" id="clearButton" class="inline-flex items-center w-full md:w-fit border border-[#1C2A0E] rounded-full px-3 py-1 text-sm text-[#1C2A0E] hover:bg-[#1C2A0E] cursor-pointer hover:text-white transition-all duration-300 justify-center md:justify-start">
+           <button (click)="clearFilters()" type="button" id="clearButton" class="inline-flex items-center w-full md:w-fit border border-[#1C2A0E] rounded-full px-3 py-1 text-sm text-[#1C2A0E] hover:bg-[#1C2A0E] cursor-pointer hover:text-white transition-all duration-300 justify-center md:justify-start">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                </svg>
@@ -47,12 +47,12 @@
       </div>
 
       <!-- Search Form: Contains all search input fields -->
-      <form id="searchForm" class="grid md:grid-cols-12 gap-4">
+      <form [formGroup]="userInputs" class="grid md:grid-cols-12 gap-4">
           <!-- Location Dropdown -->
           <div class="md:col-span-3">
               <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
               <div class="relative">
-                  <select id="location" class="cursor-pointer w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
+                  <select id="region" formControlName="region" class="cursor-pointer w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
                       <option value="">Select Region</option>
                       <option value="north">North Sikkim</option>
                       <option value="south">South Sikkim</option>
@@ -70,7 +70,7 @@
           <div class="md:col-span-3">
               <label class="block text-sm font-medium text-gray-700 mb-2">Village</label>
               <div class="relative">
-                  <select id="village" class="w-full cursor-pointer pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
+                  <select id="village" formControlName="village" class="w-full cursor-pointer pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E] appearance-none">
                       <option value="">Select Village</option>
                       <option *ngFor="let village of Villages"  [value]="village.name">{{village.name}}</option>
                   </select>
@@ -89,6 +89,7 @@
                       id="searchTerm"
                       type="text" 
                       placeholder="Search homestays, activities, products..." 
+                      formControlName="searchTerm" 
                       class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1C2A0E]/20 focus:border-[#1C2A0E]"
                   >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2">
@@ -100,7 +101,7 @@
           <!-- Search Button -->
           <div class="md:col-span-2">
               <label class="block text-sm font-medium text-transparent mb-2">Search</label>
-              <button type="button" id="clearButton" class="inline-flex items-center w-full md:w-fit border border-[#1C2A0E] rounded-full px-3 py-2 cursor-pointer text-sm text-[#1C2A0E] hover:bg-[#1C2A0E] hover:text-white transition-all duration-300 justify-center md:justify-start">
+              <button (click)="getData()" type="button" id="clearButton" class="inline-flex items-center w-full md:w-fit border border-[#1C2A0E] rounded-full px-3 py-2 cursor-pointer text-sm text-[#1C2A0E] hover:bg-[#1C2A0E] hover:text-white transition-all duration-300 justify-center md:justify-start">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 10l6 6m-4-6a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>           
@@ -408,5 +409,3 @@
 
         </div>
     </section>
-
-
