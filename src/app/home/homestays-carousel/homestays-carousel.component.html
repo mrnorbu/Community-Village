@@ -4,19 +4,19 @@
       <div class="owl-carousel owl-theme homestays-carousel mt-2">
 
               <!-- Homestays -->
-              <div class="item" *ngFor="let homestay of Homestays; let i =index">
-                  <div class="group flex flex-col h-[32rem]">
+              <div class="item" *ngFor="let homestay of homestays; let i =index">
+                  <div class="group flex flex-col h-auto">
                       <div class="relative overflow-hidden rounded-lg mb-4 aspect-square min-h-[180px] max-h-[180px]">
                           <img 
                               [src]="homestay.image"
-                              [alt]="homestay.name"
+                              [alt]="homestay.homestayName"
                               class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
                           />
                       </div>
                       <div class="flex flex-col flex-grow">
-                          <h4 class="text-lg mb-2 font-semibold">{{homestay.name}}</h4>
+                          <h4 class="text-lg mb-2 font-semibold line-clamp-1">{{homestay.homestayName}}</h4>
                           <div class="flex flex-wrap gap-2 mb-3">
-                              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 bg-[#1C2A0E] text-white">{{homestay.location}}</span>
+                              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 bg-[#1C2A0E] text-white">{{homestay.address}}</span>
                               <span class="inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:text-white" [ngClass]="getClass(i+1)">{{homestay.region}}</span>
                           </div>
                           <p class="text-gray-700 mb-2 line-clamp-4 text-base">

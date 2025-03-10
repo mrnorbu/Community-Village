@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { EventsService } from '../../services/events.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -11,15 +11,39 @@ import { EventsService } from '../../services/events.service';
 })
 export class UpcomingEventsComponent implements OnInit{
 
-  constructor(private eventService:EventsService) { }
 
-  Events:any[]=[]
+ private apiService = inject(ApiService) 
+  constructor() { }
+  page: number = 1;
+
+ events:any=[]
 
   ngOnInit() {
-    this.Events=this.eventService.getEvent();
+     this.getEvents();
   }
 
-  page: number = 1;
+ 
+
+  getEvents(): void {
+    this.apiService.getData('website/events').subscribe({
+      next: (data: any) => {
+       
+      this.events = data;
+        
+      },
+      error: (error:any) => {
+        console.error('Error fetching Events:', error);
+        // Optionally, set a default value or handle the error
+        this.events = []; // Fallback to an empty array
+      },
+      complete: () => {
+        // Optional: Handle completion logic if needed
+        console.log('Events fetch completed.');
+      
+      }
+    });
+  }
+  
 
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-event-profile',
   templateUrl: './event-profile.component.html',
@@ -9,7 +10,8 @@ export class EventProfileComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+     
+    }
 
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { getDynamicClass,destroyOwlInstance,initializeOwlCarousel } from '../../utils/utils';
-import { EventsService } from '../../services/events.service';
+import { EventsService } from '../../../services/events.service';
 
 declare var $:any
 @Component({

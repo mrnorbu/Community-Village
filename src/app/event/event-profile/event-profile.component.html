@@ -1,114 +1,88 @@
-<section class="px-8 mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-4">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Event Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <!-- Date Display Section -->
+        <div class="relative flex items-center justify-center">
+            <div class="w-full aspect-square max-w-[400px] bg-[#1C2A0E] rounded-lg p-8 flex flex-col items-center justify-center">
+                <div class="text-center">
+                    <p class="text-6xl font-bold text-white mb-2">15</p>
+                    <p class="text-2xl font-semibold text-white/90 mb-1">March</p>
+                    <p class="text-xl text-white/80">2024</p>
 
-  <!-- Banner Section -->
-  <div class="relative w-full h-96">
-      <img src="assets/images/events/music-festival.jpg" alt="Event Image" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-opacity-40 flex items-center justify-center">
-          <h1 class="text-5xl font-bold text-white text-center px-6">Sikkim Traditional Music Festival</h1>
-      </div>
-  </div>
+                </div>
+            </div>
+        </div>
 
-  <!-- Event Main Info -->
-  <div class="p-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Event Details Section -->
+        <div class="md:col-span-2">
+            <!-- Header -->
+            <div class="mb-4">
+                <div class="flex flex-col mb-2">
+                    <h1 class="text-2xl font-bold mb-1">Sikkim Spring Festival</h1>
+                    <div class="flex items-center gap-2 text-gray-600 text-sm">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <p>Gangtok, East Sikkim</p>
+                    </div>
+                </div>
+            </div>
 
-          <!-- Date & Time -->
-          <div class="p-5 border-l-4 border-blue-500 bg-gray-50 rounded-lg shadow-sm">
-              <h4 class="text-lg font-semibold text-gray-700">📅 Date & Time</h4>
-              <p class="text-gray-600 mt-1">March 20, 2025 | 5:00 PM - 10:00 PM</p>
-          </div>
+            <!-- Description -->
+            <div class="mb-6">
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Join us for the vibrant Sikkim Spring Festival, celebrating the blooming of rhododendrons and local culture. Experience traditional dances, music performances, local cuisine, and handicraft exhibitions. A perfect opportunity to immerse yourself in Sikkimese traditions and natural beauty.
+                </p>
+            </div>
 
-          <!-- Location -->
-          <div class="p-5 border-l-4 border-green-500 bg-gray-50 rounded-lg shadow-sm">
-              <h4 class="text-lg font-semibold text-gray-700">📍 Location</h4>
-              <p class="text-gray-600 mt-1">MG Marg, Gangtok</p>
-          </div>
+            <!-- Event Features -->
+            <div class="mb-6">
+                <div class="flex flex-wrap gap-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="music" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Live Performances</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="utensils" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Food Stalls</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="shopping-bag" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Handicraft Market</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="users" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Family Friendly</span>
+                    </div>
+                </div>
+            </div>
 
-          <!-- Entry Fee -->
-          <div class="p-5 border-l-4 border-red-500 bg-gray-50 rounded-lg shadow-sm">
-              <h4 class="text-lg font-semibold text-gray-700">🎟️ Entry Fee</h4>
-              <p class="text-gray-600 mt-1">Free for all</p>
-          </div>
-      </div>
-  </div>
+            
+        </div>
 
-  <!-- Event Highlights Section -->
-  <div class="bg-gray-100 p-8">
-      <h2 class="text-2xl font-semibold text-gray-800">🌟 Event Highlights</h2>
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Contact Section -->
+        <div class="md:border-l border-gray-200 md:pl-6">
+            <div class="flex flex-col gap-4">
+                <!-- Contact Info -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i data-lucide="phone" class="w-5 h-5 text-gray-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">+91 98765 43210</p>
+                        <p class="text-sm text-gray-600">Event Coordinator</p>
+                    </div>
+                </div>
 
-          <div class="p-5 bg-white shadow-md rounded-lg flex items-center space-x-4">
-              <span class="text-3xl">🎶</span>
-              <p class="text-gray-700">Live Folk Music & Dance Performances</p>
-          </div>
-
-          <div class="p-5 bg-white shadow-md rounded-lg flex items-center space-x-4">
-              <span class="text-3xl">🍛</span>
-              <p class="text-gray-700">Traditional Sikkimese Cuisine & Food Stalls</p>
-          </div>
-
-          <div class="p-5 bg-white shadow-md rounded-lg flex items-center space-x-4">
-              <span class="text-3xl">🛍️</span>
-              <p class="text-gray-700">Handmade Crafts & Souvenirs Market</p>
-          </div>
-
-          <div class="p-5 bg-white shadow-md rounded-lg flex items-center space-x-4">
-              <span class="text-3xl">🔥</span>
-              <p class="text-gray-700">Evening Bonfire & Cultural Storytelling</p>
-          </div>
-
-          <div class="p-5 bg-white shadow-md rounded-lg flex items-center space-x-4">
-              <span class="text-3xl">🎤</span>
-              <p class="text-gray-700">Q&A Sessions with Folk Musicians</p>
-          </div>
-
-          <div class="p-5 bg-white shadow-md rounded-lg flex items-center space-x-4">
-              <span class="text-3xl">📸</span>
-              <p class="text-gray-700">Photography & Documentary Screening</p>
-          </div>
-      </div>
-  </div>
-
-  <!-- Event Schedule -->
-  <div class="p-8">
-      <h2 class="text-2xl font-semibold text-gray-800">📅 Event Schedule</h2>
-      <div class="mt-6 space-y-4">
-
-          <div class="flex items-center justify-between bg-gray-50 p-5 rounded-lg shadow">
-              <p class="text-gray-700 font-semibold">🕔 5:00 PM - Opening Ceremony</p>
-              <p class="text-gray-600">Traditional Dance Performance</p>
-          </div>
-
-          <div class="flex items-center justify-between bg-gray-50 p-5 rounded-lg shadow">
-              <p class="text-gray-700 font-semibold">🕡 6:30 PM - Live Folk Music</p>
-              <p class="text-gray-600">Performance by Regional Artists</p>
-          </div>
-
-          <div class="flex items-center justify-between bg-gray-50 p-5 rounded-lg shadow">
-              <p class="text-gray-700 font-semibold">🕘 9:00 PM - Grand Finale</p>
-              <p class="text-gray-600">Fusion of Folk & Contemporary Music</p>
-          </div>
-      </div>
-  </div>
-
-  <!-- Safety Guidelines -->
-  <div class="bg-gray-100 p-8">
-      <h2 class="text-2xl font-semibold text-gray-800">⚠️ Event Guidelines</h2>
-      <ul class="list-disc ml-6 text-gray-700 mt-4 space-y-2">
-          <li>Arrive at least 30 minutes before the event start time.</li>
-          <li>Respect performers and fellow attendees.</li>
-          <li>Follow COVID-19 safety protocols if applicable.</li>
-          <li>No smoking or alcohol consumption in the event area.</li>
-          <li>Use designated waste bins to keep the venue clean.</li>
-      </ul>
-  </div>
-
-  <!-- Contact Information -->
-  <div class="p-8">
-      <h2 class="text-2xl font-semibold text-gray-800">📞 Contact for More Information</h2>
-      <p class="text-gray-600 mt-3"><strong>Organizer:</strong> Cultural Board of Sikkim</p>
-      <p class="text-gray-600"><strong>Phone:</strong> +91 9876543210</p>
-      <p class="text-gray-600"><strong>Email:</strong> events-sikkimfest.com</p>
-  </div>
-
+                <!-- Entry Info -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i data-lucide="ticket" class="w-5 h-5 text-gray-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Free Entry</p>
+                        <p class="text-sm text-gray-600">Open to all</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

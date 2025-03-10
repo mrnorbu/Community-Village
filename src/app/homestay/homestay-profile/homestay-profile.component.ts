@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
 
 @Component({
   selector: 'app-homestay-profile',
@@ -8,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class HomestayProfileComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit() {
+ngOnInit() {
+    setTimeout(() => {
+      initializeOwlCarousel('.homestayGallerySwiper',false,true,1,false,[1,1,1])
+    }, 1000);
   }
-
+  
 }

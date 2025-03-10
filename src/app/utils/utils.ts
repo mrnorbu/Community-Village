@@ -58,3 +58,6 @@ export function destroyOwlInstance(carouselClass:string):boolean{
   }
   return false;
 }
+
+
+

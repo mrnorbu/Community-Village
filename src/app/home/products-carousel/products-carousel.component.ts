@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from '../../../services/products.service';
 import { RouterLink } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-products-carousel',
@@ -12,16 +13,18 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductsCarouselComponent implements OnInit, AfterViewInit, OnDestroy  {
 
-  constructor(private productService:ProductsService) { }
+  private apiService = inject(ApiService)
 
-  Products:any[]=[];
+  products:any[]=[];
 
   ngOnInit() {
-    this.Products=this.productService.getProductsData();
+    this.getProducts()
   }
 
   ngAfterViewInit(): void {
-    initializeOwlCarousel('.product-carousel',true,true,24,false,[1,3,4]);
+    setTimeout(() => {
+      initializeOwlCarousel('.product-carousel',true,true,24,false,[1,3,4]);
+    }, 1000);
   }
 
   ngOnDestroy() {
@@ -32,6 +35,31 @@ export class ProductsCarouselComponent implements OnInit, AfterViewInit, OnDestr
 getClass(input:number){
   return getDynamicClass(input);
 }
+
+
+getProducts(): void {
+  this.apiService.getData('website/products').subscribe({
+    next: (data: any) => {
+     
+    this.products = data.map((product: any) => ({
+      ...product, // Spread the existing properties
+      image: 'https://placehold.co/600x400' // Add a placeholder image
+    }));
+      
+    },
+    error: (error:any) => {
+      console.error('Error fetching Products:', error);
+      // Optionally, set a default value or handle the error
+      this.products = []; // Fallback to an empty array
+    },
+    complete: () => {
+      // Optional: Handle completion logic if needed
+      console.log('Products fetch completed.');
+    
+    }
+  });
+}
+
 
 
 }

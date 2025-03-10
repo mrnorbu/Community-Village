@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { ActivitiesService } from '../../services/activities.service';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
+import { ActivitiesService } from '../../../services/activities.service';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
 declare var $: any; // Declare jQuery
 
 @Component({
@@ -13,16 +14,19 @@ declare var $: any; // Declare jQuery
 })
 export class AdventuresComponent implements OnInit ,AfterViewInit,OnDestroy{
 
-  constructor(private activitiesService: ActivitiesService) { }
-  Activities:any[]=[];
+  private apiService = inject(ApiService)
+
+  activities:any[]=[];
 
   ngOnInit() {
-  this.Activities=this.activitiesService.getActivities();
+  this.getActivities()
   }
 
   
   ngAfterViewInit(): void {
-    initializeOwlCarousel('.adventure-carousel',true,true,5,false,[2,3,4]);
+   setTimeout(() => {
+    initializeOwlCarousel('.adventure-carousel',true,true,5,false,[1,3,5]);
+   }, 500);
 }
 
   ngOnDestroy() {
@@ -34,5 +38,30 @@ getClass(input:number):string
 {
   return getDynamicClass(input)
 }
+
+
+getActivities(): void {
+  this.apiService.getData('website/activities').subscribe({
+    next: (data: any) => {
+     
+    this.activities = data.map((activity: any) => ({
+      ...activity, // Spread the existing properties
+      image: 'https://placehold.co/600x400' // Add a placeholder image
+    }));
+      
+    },
+    error: (error:any) => {
+      console.error('Error fetching Activities:', error);
+      // Optionally, set a default value or handle the error
+      this.activities = []; // Fallback to an empty array
+    },
+    complete: () => {
+      // Optional: Handle completion logic if needed
+      console.log('Activities fetch completed.');
+    
+    }
+  });
+}
+
 
 }

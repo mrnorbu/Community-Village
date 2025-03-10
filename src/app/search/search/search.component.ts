@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GlobalEnums } from '../../globalEnums.enum';
 import { getDynamicClass } from '../../utils/utils';
-import { HomestaysService } from '../../services/homestays.service';
-import { ProductsService } from '../../services/products.service';
-import { ActivitiesService } from '../../services/activities.service';
-import { EventsService } from '../../services/events.service';
-import { VillagesService } from '../../services/villages.service';
+import { HomestaysService } from '../../../services/homestays.service';
+import { ProductsService } from '../../../services/products.service';
+import { ActivitiesService } from '../../../services/activities.service';
+import { EventsService } from '../../../services/events.service';
+import { VillagesService } from '../../../services/villages.service';
 import { IsNumberPipe } from '../../pipes/isNumber.pipe';
 import {FormGroup,FormControl, ReactiveFormsModule} from '@angular/forms'
 

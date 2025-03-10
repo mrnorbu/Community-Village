@@ -1,96 +1,103 @@
-<section class="mx-auto bg-gray-50 shadow-md rounded-lg px-8 mt-6">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Product Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <!-- Image Section -->
+        <div class="relative flex items-center justify-center">
+            <div class="owl-carousel owl-theme productImageSwiper w-full">
+ 
+                    <div class="item">
+                        <img 
+                            src="assets/images/products/img-product-1.jpeg" 
+                            alt="Traditional Wooden Bowls - Front View"
+                            class="w-full h-auto max-h-[280px] object-contain rounded-lg"
+                        />
+                    </div>
+                    <div class="item">
+                        <img 
+                            src="assets/images/products/img-product-2.jpeg" 
+                            alt="Traditional Wooden Bowls - Side View"
+                            class="w-full h-auto max-h-[280px] object-contain rounded-lg"
+                        />
+                    </div>
+                    <div class="item">
+                        <img 
+                            src="assets/images/products/img-product-3.jpeg" 
+                            alt="Traditional Wooden Bowls - Detail View"
+                            class="w-full h-auto max-h-[280px] object-contain rounded-lg"
+                        />
+                    </div>
 
-  <!-- Product Image & Info Row -->
-  <div class="flex flex-col md:flex-row gap-6">
-      
-      <!-- Product Image -->
-      <div class="w-full md:w-1/2 h-80 rounded-lg overflow-hidden">
-          <img src="assets/images/products/handmade-basket.jpg" alt="Product Image" class="w-full h-full object-cover">
-      </div>
+            </div>
+        </div>
 
-      <!-- Product Info -->
-      <div class="w-full md:w-1/2 flex flex-col justify-between">
-          <div>
-              <h1 class="text-4xl font-bold text-gray-800">Handmade Bamboo Basket</h1>
-              <p class="text-lg text-gray-600 mt-2">
-                  Crafted by <span class="font-semibold">XYZ Artisan Group</span>
-              </p>
-              <p class="text-gray-700 mt-4">
-                  A beautifully handcrafted bamboo basket, woven by skilled artisans from Sikkim. 
-                  Perfect for home decor, storing essentials, or gifting as a sustainable, eco-friendly product.
-              </p>
-          </div>
+        <!-- Product Details Section -->
+        <div class="md:col-span-2">
+            <!-- Header -->
+            <div class="mb-4">
+                <div class="flex flex-col mb-2">
+                    <h1 class="text-2xl font-bold mb-1">Traditional Wooden Bowls</h1>
+                    <div class="flex items-center gap-2 text-gray-600 text-sm">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <p>Lachung, North Sikkim</p>
+                    </div>
+                </div>
+            </div>
 
-          <!-- Price & Stock -->
-          <div class="mt-4">
-              <p class="text-xl font-semibold text-gray-800">💰 Price: INR 850</p>
-              <p class="text-gray-600">Availability: <span class="font-medium text-green-600">In Stock</span></p>
-          </div>
-      </div>
-  </div>
+            <!-- Description -->
+            <div class="mb-6">
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Handcrafted from locally sourced wood, these traditional bowls represent the rich craftsmanship of Sikkim. Each piece is uniquely carved and finished with natural oils, making them perfect for an eco-friendly dining experience. The bowls showcase intricate details and patterns that tell the story of Sikkimese artistry.
+                </p>
+            </div>
 
-  <!-- Key Features Grid -->
-  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <div class="p-5 border border-gray-300 rounded-lg bg-white">
-          <h4 class="text-lg font-semibold text-gray-700">📏 Size</h4>
-          <p class="text-gray-600 mt-1">Medium (12" x 10")</p>
-      </div>
+            <!-- Product Features -->
+            <div class="mb-6">
+                <div class="flex flex-wrap gap-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">100% Handmade</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="leaf" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Eco-friendly</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="droplets" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Food Safe</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                        <i data-lucide="recycle" class="w-4 h-4 text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Sustainable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <div class="p-5 border border-gray-300 rounded-lg bg-white">
-          <h4 class="text-lg font-semibold text-gray-700">🌿 Material</h4>
-          <p class="text-gray-600 mt-1">100% Natural Bamboo</p>
-      </div>
+        <!-- Contact Section -->
+        <div class="md:border-l md:pl-6 border-gray-200">
+            <div class="flex flex-col gap-4">
+                <!-- Contact Info -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i data-lucide="phone" class="w-5 h-5 text-gray-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">+91 98765 43210</p>
+                        <p class="text-sm text-gray-600">Available 9 AM - 9 PM</p>
+                    </div>
+                </div>
 
-      <div class="p-5 border border-gray-300 rounded-lg bg-white">
-          <h4 class="text-lg font-semibold text-gray-700">🎨 Color</h4>
-          <p class="text-gray-600 mt-1">Light Brown (Natural Finish)</p>
-      </div>
-
-      <div class="p-5 border border-gray-300 rounded-lg bg-white">
-          <h4 class="text-lg font-semibold text-gray-700">⚡ Durability</h4>
-          <p class="text-gray-600 mt-1">Highly Durable & Water-Resistant</p>
-      </div>
-
-      <div class="p-5 border border-gray-300 rounded-lg bg-white">
-          <h4 class="text-lg font-semibold text-gray-700">♻️ Eco-Friendly</h4>
-          <p class="text-gray-600 mt-1">100% Biodegradable & Sustainable</p>
-      </div>
-
-      <div class="p-5 border border-gray-300 rounded-lg bg-white">
-          <h4 class="text-lg font-semibold text-gray-700">🏡 Best For</h4>
-          <p class="text-gray-600 mt-1">Storage, Gifting, Home Decor</p>
-      </div>
-  </div>
-
-  <!-- Product Details -->
-  <div class="mt-8">
-      <h2 class="text-2xl font-semibold text-gray-700">Why Choose This Product?</h2>
-      <ul class="list-disc ml-6 text-gray-600 mt-3 space-y-2">
-          <li>✅ Handwoven by local artisans using traditional techniques.</li>
-          <li>✅ Supports sustainable and eco-friendly craftsmanship.</li>
-          <li>✅ Durable and lightweight, making it perfect for everyday use.</li>
-          <li>✅ Ethically sourced bamboo from local forests.</li>
-      </ul>
-  </div>
-
-  <!-- Care Instructions -->
-  <div class="mt-8 bg-gray-100 p-6 rounded-lg">
-      <h2 class="text-2xl font-semibold text-gray-700">Care Instructions</h2>
-      <ul class="list-disc ml-6 text-gray-600 mt-3 space-y-2">
-          <li>⚠️ Keep away from direct moisture to ensure longevity.</li>
-          <li>⚠️ Wipe with a dry or slightly damp cloth to clean.</li>
-          <li>⚠️ Store in a cool, dry place when not in use.</li>
-          <li>⚠️ Avoid prolonged exposure to sunlight to retain natural color.</li>
-      </ul>
-  </div>
-
-  <!-- Contact Information -->
-  <div class="mt-8 bg-gray-100 p-6 rounded-lg">
-      <h2 class="text-2xl font-semibold text-gray-700">Contact for Purchase</h2>
-      <p class="text-gray-600 mt-3"><strong>Seller:</strong> Tenzing Handicrafts</p>
-      <p class="text-gray-600"><strong>Phone:</strong> +91 9876543210</p>
-      <p class="text-gray-600"><strong>Email:</strong> handmadebaskets-gmail.com</p>
-  </div>
-
+                <!-- Price Info -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i data-lucide="tag" class="w-5 h-5 text-gray-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Contact for price</p>
+                        <p class="text-sm text-gray-600">Bulk orders available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

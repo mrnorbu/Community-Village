@@ -1,93 +1,162 @@
-<section class=" mx-auto bg-white shadow-lg rounded-lg mt-6 px-8">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Image Gallery Section -->
+    <!-- Desktop Gallery (hidden on mobile) -->
+    <div class="hidden md:grid grid-cols-3 gap-4 mb-8">
+        <div class="col-span-2">
+            <img 
+                src="assets/images/homestays/homestay1.jpg" 
+                alt="Main view of Himalayan Homestay"
+                class="w-full h-[400px] object-cover rounded-lg"
+            />
+        </div>
+        <div class="col-span-1 grid gap-4">
+            <div>
+                <img 
+                    src="assets/images/homestays/homestay2.jpg" 
+                    alt="Room interior of Himalayan Homestay"
+                    class="w-full h-[195px] object-cover rounded-lg"
+                />
+            </div>
+            <div>
+                <img 
+                    src="assets/images/homestays/homestay3.jpg" 
+                    alt="Dining area of Himalayan Homestay"
+                    class="w-full h-[195px] object-cover rounded-lg"
+                />
+            </div>
+        </div>
+    </div>
 
-  <!-- Homestay Image -->
-  <div class="w-full h-80 rounded-lg overflow-hidden">
-      <img src="assets/images/homestays/homestay-profile.jpg" alt="Homestay Image" class="w-full h-full object-cover">
-  </div>
+    <!-- Mobile Gallery (hidden on desktop) -->
+    <div class="md:hidden mb-8 relative">
+        <div class="owl-carousel owl-theme homestayGallerySwiper">
+        
+                <div class="item">
+                    <img 
+                        src="assets/images/homestays/homestay1.jpg" 
+                        alt="Main view of Himalayan Homestay"
+                        class="w-full h-[300px] object-cover rounded-lg"
+                    />
+                </div>
+                <div class="item">
+                    <img 
+                        src="assets/images/homestays/homestay2.jpg" 
+                        alt="Room interior of Himalayan Homestay"
+                        class="w-full h-[300px] object-cover rounded-lg"
+                    />
+                </div>
+                <div class="item">
+                    <img 
+                        src="assets/images/homestays/homestay3.jpg" 
+                        alt="Dining area of Himalayan Homestay"
+                        class="w-full h-[300px] object-cover rounded-lg"
+                    />
+                </div>
+   
+         
+        </div>
+    </div>
 
-  <!-- Homestay Name & Location -->
-  <div class="mt-6">
-      <h1 class="text-4xl font-bold text-gray-800">Mountain View Homestay</h1>
-      <p class="text-lg text-gray-600 mt-2">
-          Located in <span class="font-semibold">Yuksom, West Sikkim</span>
-      </p>
-  </div>
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Main Content -->
+        <div class="md:col-span-2">
+            <!-- Homestay Description Section -->
+            <div class="mb-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold mb-2">Himalayan Homestay</h1>
+                        <p class="text-gray-600">Lachung, North Sikkim</p>
+                    </div>
+                    <div class="sm:text-right">
+                        <p class="text-2xl font-bold text-gray-900">₹2,500</p>
+                        <p class="text-sm text-gray-600">per night</p>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Overview -->
-  <div class="mt-6">
-      <h2 class="text-2xl font-semibold text-gray-700">About This Homestay</h2>
-      <p class="text-gray-600 mt-3 leading-relaxed">
-          Nestled in the heart of the Himalayas, Mountain View Homestay offers a serene escape with breathtaking 
-          views of the Kanchenjunga range. Experience traditional Sikkimese hospitality, locally sourced meals, and 
-          a cozy stay in an eco-friendly environment. Ideal for nature lovers, trekkers, and cultural explorers.
-      </p>
-  </div>
+            <section class="mb-12">
+                <h2 class="text-xl md:text-2xl font-semibold mb-6">About this homestay</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    A cozy wooden cottage offering breathtaking mountain views and traditional Bhutia hospitality. Experience authentic local lifestyle while enjoying modern comforts. Our homestay provides a perfect blend of traditional architecture and contemporary amenities.
+                </p>
 
-  <!-- Key Information Grid -->
-  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <div class="p-5 border border-gray-300 rounded-lg">
-          <h4 class="text-lg font-semibold text-gray-700">📍 Location</h4>
-          <p class="text-gray-600 mt-1">Yuksom, West Sikkim</p>
-      </div>
+                <!-- Amenities -->
+                <h3 class="text-lg md:text-xl font-semibold mb-4">Amenities</h3>
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                
+                        <span class="text-sm text-gray-600">Free WiFi</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                  
+                        <span class="text-sm text-gray-600">Homemade Meals</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                      
+                        <span class="text-sm text-gray-600">Free Parking</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                      
+                        <span class="text-sm text-gray-600">Mountain View</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                      
+                        <span class="text-sm text-gray-600">Breakfast Included</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                      
+                        <span class="text-sm text-gray-600">Room Heater</span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
+                      
+                        <span class="text-sm text-gray-600">Pickup Available</span>
+                    </div>
+                </div>
 
-      <div class="p-5 border border-gray-300 rounded-lg">
-          <h4 class="text-lg font-semibold text-gray-700">💰 Price Per Night</h4>
-          <p class="text-gray-600 mt-1">INR 2,500</p>
-      </div>
+                <!-- Room Information -->
+                <h3 class="text-lg md:text-xl font-semibold mb-4">Room Information</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-2">
+                    
+                        <span class="text-gray-600">4 Guests</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                    
+                        <span class="text-gray-600">2 Bedrooms</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                     
+                        <span class="text-gray-600">1 Bathroom</span>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-      <div class="p-5 border border-gray-300 rounded-lg">
-          <h4 class="text-lg font-semibold text-gray-700">🛏️ Rooms Available</h4>
-          <p class="text-gray-600 mt-1">3 Private Rooms</p>
-      </div>
+        <!-- Sidebar -->
+        <div class="md:col-span-1">
+            <!-- Contact Information -->
+            <div class="border border-gray-200 rounded-lg p-4">
+                <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
+                
+                <!-- Host Name -->
+                <div class="flex items-center gap-3 mb-3">
+                   
+                    <div>
+                        <p class="font-medium">Tashi Wangdi</p>
+                        <p class="text-sm text-gray-600">Host</p>
+                    </div>
+                </div>
 
-      <div class="p-5 border border-gray-300 rounded-lg">
-          <h4 class="text-lg font-semibold text-gray-700">🍽️ Meals Included</h4>
-          <p class="text-gray-600 mt-1">Breakfast & Dinner</p>
-      </div>
-
-      <div class="p-5 border border-gray-300 rounded-lg">
-          <h4 class="text-lg font-semibold text-gray-700">🌱 Eco-Friendly</h4>
-          <p class="text-gray-600 mt-1">Yes, 100% Sustainable</p>
-      </div>
-
-      <div class="p-5 border border-gray-300 rounded-lg">
-          <h4 class="text-lg font-semibold text-gray-700">🚗 Parking</h4>
-          <p class="text-gray-600 mt-1">Free On-Site Parking</p>
-      </div>
-  </div>
-
-  <!-- Amenities Section -->
-  <div class="mt-8">
-      <h2 class="text-2xl font-semibold text-gray-700">Amenities</h2>
-      <ul class="list-disc ml-6 text-gray-600 mt-3 space-y-2">
-          <li>✅ Comfortable Beds with Warm Blankets</li>
-          <li>✅ Hot Water & Private Bathrooms</li>
-          <li>✅ Free Wi-Fi & Charging Points</li>
-          <li>✅ Bonfire & Evening Cultural Sessions</li>
-          <li>✅ Organic Farm & Homegrown Meals</li>
-          <li>✅ Trekking & Nature Walks Available</li>
-      </ul>
-  </div>
-
-  <!-- Safety & Guidelines -->
-  <div class="mt-8 bg-gray-100 p-6 rounded-lg">
-      <h2 class="text-2xl font-semibold text-gray-700">Homestay Guidelines</h2>
-      <ul class="list-disc ml-6 text-gray-600 mt-3 space-y-2">
-          <li>⚠️ Check-in: 2:00 PM | Check-out: 11:00 AM</li>
-          <li>⚠️ Respect Local Culture & Traditions</li>
-          <li>⚠️ No Loud Music or Parties After 10 PM</li>
-          <li>⚠️ Eco-friendly Practices Encouraged</li>
-          <li>⚠️ Pets Allowed with Prior Notice</li>
-      </ul>
-  </div>
-
-  <!-- Contact Details -->
-  <div class="mt-8 bg-gray-100 p-6 rounded-lg">
-      <h2 class="text-2xl font-semibold text-gray-700">Contact for More Information</h2>
-      <p class="text-gray-600 mt-3"><strong>Homestay Owner:</strong> Mr. Tenzing Bhutia</p>
-      <p class="text-gray-600"><strong>Phone:</strong> +91 9876543210</p>
-      <p class="text-gray-600"><strong>Email:</strong> mountainviewhomestay-gmail.com</p>
-  </div>
-
+                <!-- Phone Number -->
+                <div class="flex items-center gap-3">
+                 
+                    <div>
+                        <p class="font-medium">+91 98765 43210</p>
+                        <p class="text-sm text-gray-600">Available 9 AM - 9 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

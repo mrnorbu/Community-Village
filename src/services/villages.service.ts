@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Inject, inject } from '@angular/core';
+import { ApiService } from './api.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class VillagesService {
+  private apiService = inject(ApiService);
+  
  private Villages:any[]= [
   {
     name: "Lachen",
@@ -90,9 +94,15 @@ export class VillagesService {
   }
 ];
 
+private village:any=[]
+
 constructor() { }
  getVillages():any[]{
   return this.Villages;
  }
-}
 
+
+
+
+
+}

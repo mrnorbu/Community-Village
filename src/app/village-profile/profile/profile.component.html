@@ -1,38 +1,42 @@
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <!-- Displays main village images in a grid layout -->
-  <div class="grid grid-cols-3 gap-4 mb-8">
-      <div class="col-span-2">
-          <img 
-              [src]="largeImage" 
-              [alt]="largeImage" 
-              class="w-full h-[400px] object-cover rounded-lg"
-          />
-      </div>
-
-      <div class="">
-
-      <div class="item col-span-1 grid gap-4">
-          <div class="px-2 cursor-pointer hover:" *ngFor="let Image of Images.slice(1)| paginate: { itemsPerPage: 2, currentPage: p }">
-              <img 
-                 [src]="Image.src"
-                 [alt]="Image.alt"
-                class="w-full h-[195px] object-cover rounded-lg"
-                (click)="updateImage($event.target)"
-              />
-          </div>
-      </div>
-      <div class="pt-2 justify-center flex ">
-      <pagination-controls class=" !text-blue-800 text-center items-center self-center font-bold text-2xl"
-       previousLabel="&lt;"
-       nextLabel="&gt;"
-      (pageChange)="p = $event">
-      </pagination-controls>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+    <!-- Large Image (Left on large screens, Top on small screens) -->
+    <div class="md:col-span-2">
+        {{committeeInfo.districtName}}
+      <img 
+        [src]="committeeInfo[0].images[0].url" 
+        [alt]="committeeInfo.committeeName" 
+        class="w-full h-[400px] object-cover rounded-lg"
+      />
     </div>
-   
+  
+    <!-- Small Images (Right on large screens, Below on small screens) -->
+    <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+      <!-- Slider for Small Images -->
+      <div *ngFor="let image of committeeInfo[0].images.slice(1) | paginate: { itemsPerPage: 2, currentPage: p }"
+           class="cursor-pointer">
+        <img 
+          [src]="image.url" 
+          [alt]="committeeInfo.committeeName" 
+          class="w-full h-[195px] object-cover rounded-lg"
+       
+        />
+      </div>
+  
+      <!-- Pagination Controls -->
+      <div class="col-span-2 md:col-span-1 flex justify-center pt-2">
+        <pagination-controls
+          class="text-blue-800 text-center font-bold text-2xl"
+          previousLabel="&lt;"
+          nextLabel="&gt;"
+          (pageChange)="p = $event">
+        </pagination-controls>
+      </div>
     </div>
-
   </div>
+  
 
   <!-- Village Description Section -->
   <!-- Contains main village information and description -->
@@ -61,7 +65,7 @@
   <!-- Contains village description and map -->
   <div class="grid grid-cols-3 gap-8">
       <!-- Main Content -->
-      <div class="col-span-2">
+      <div class="col-span-3 md:col-span-2">
           <section id="village-overview" class="mb-12" *ngIf="isBoxVisible">
               <h2 class="text-2xl font-semibold mb-6">Village Description</h2>
               <p class="text-gray-600 mb-8 leading-relaxed">
@@ -122,8 +126,8 @@
           </section>
       </div>
 
-      <!-- Booking Card -->
-      <div class="col-span-1">
+      <!-- GPS Card -->
+      <div class="col-span-3 md:col-span-1">
           <h2 class="text-2xl font-semibold mb-4">Location</h2>
           <div class="relative w-full h-[400px] rounded-lg overflow-hidden">
               <div id="map" class="w-full h-full">
@@ -131,5 +135,13 @@
               </div>
           </div>
       </div>
+
+
+
   </div>
 </main>
+
+
+<!-----------
+HELP:  Loop the array for this , and use the ngFor directive to create a list of items.
+-------->

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ApiService } from '../../../services/api.service';
 
 declare var $: any; // Declare jQuery
 
@@ -11,39 +12,19 @@ declare var $: any; // Declare jQuery
   imports:[CommonModule,NgxPaginationModule]
 })
 export class ProfileComponent implements OnInit, AfterViewInit {
+  
+  private apiService = inject(ApiService)
+  committeeInfo:any=[]
 
   constructor() { }
 
   ngOnInit(): void {
+    this.getVillages();
     // Initialization logic can go here
   }
 
-   /*****************Images ***********************/
-   Images=[
-    {
-      src:'assets/images/villages/namchi.jpg',
-      alt:'Beautiful landscapes around Namchi',
-    },
-    {
-      src:'assets/images/villages/rinchenpong.jpg',
-      alt:'Traditional architecture in Rinchenpong'
-    },
-    {
-      src:'assets/images/villages/lingee.jpg',
-      alt:'Traditional architecture in Rinchenpong',
-    },
-    {
-      src:'assets/images/villages/lachen.jpg',
-      alt:'Beautiful landscapes around Namchi',
-     },
-     {
-      src:'assets/images/villages/martam.jpg',
-      alt:'Beautiful landscapes around Namchi',
-     },
-  ];
-  
   p: number = 1;//for image pagination
-  largeImage: string =this.Images[0].src ;
+
 
 
   ngAfterViewInit(): void {
@@ -58,13 +39,35 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     else if(divType=='leaderShip') this.isBoxVisible=false;
   }
 
- 
 
-  updateImage(clickedImage: any): void {
-    let temp = this.largeImage;
-    this.largeImage = clickedImage.src;
-    clickedImage.src = temp;
-  }
+
+getVillages(): void {
+  this.apiService.getData('website/committees').subscribe({
+    next: (data: any) => {
+      // Map the data and add the images array to each committee
+      this.committeeInfo = data.map((committee: any) => ({
+        ...committee, // Spread the existing properties
+        images: [] = [
+          { url: 'assets/images/villages/namchi.jpg' },
+          { url: 'assets/images/villages/rinchenpong.jpg' },
+          { url: 'assets/images/villages/lingee.jpg' },
+          { url: 'assets/images/villages/lachen.jpg' },
+          { url: 'assets/images/villages/martam.jpg' }
+        ]
+      }));
+      console.log(this.committeeInfo)
+    },
+    error: (error: any) => {
+      console.error('Error fetching CommitteesInfo:', error);
+      this.committeeInfo = []; // Fallback to an empty array
+      console.log(this.committeeInfo)
+    },
+    complete: () => {
+      console.log('CommitteesInfo fetch completed.');
+    }
+  });
+}
+
 
 
   
