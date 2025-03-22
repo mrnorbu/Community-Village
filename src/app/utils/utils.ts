@@ -1,12 +1,15 @@
 // src/app/utils/color-utils.ts
 declare var $: any; // Declare jQuery
 
+
+
 const colorClasses = [
     { bg: 'bg-blue-500/10', text: 'text-blue-500', hover: 'hover:bg-blue-500' },
     { bg: 'bg-red-500/10', text: 'text-red-500', hover: 'hover:bg-red-500' },
     { bg: 'bg-green-500/10', text: 'text-green-500', hover: 'hover:bg-green-500' },
     { bg: 'bg-purple-500/10', text: 'text-purple-500', hover: 'hover:bg-purple-500' }
   ];
+
   
  export function getDynamicClass(input: number): string {
     // Calculate the index based on the input value
@@ -58,6 +61,7 @@ export function destroyOwlInstance(carouselClass:string):boolean{
   }
   return false;
 }
+
 
 
 

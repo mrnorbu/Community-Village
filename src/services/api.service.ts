@@ -32,11 +32,13 @@ export class ApiService {
       );
   }
 
+  
 // GET request by ID with improved error handling and logging
 getDataById<T>(endpoint: string, id: any): Observable<T> {
-  if (!id) {
-    console.warn('Invalid ID provided for fetching data.');
-    return throwError(() => new Error('Invalid ID provided.'));
+  // Validate ID before making the request
+  if (!id || id === null || id === undefined) {
+    console.warn('Invalid or missing ID provided for fetching data.');
+    return throwError(() => new Error('Invalid or missing ID provided.'));
   }
 
   const url = `${this.apiUrl}/${endpoint}/${id}`;
@@ -46,17 +48,31 @@ getDataById<T>(endpoint: string, id: any): Observable<T> {
     .pipe(
       timeout(this.defaultTimeout), // Apply request timeout
       map((res: T) => {
-        if (!res) {
-          console.warn(`No data found for ID: ${id}`);
+        if (!res || Object.keys(res).length === 0) {
+          console.warn(`No data found for ID: ${id} at endpoint: ${endpoint}`);
+          throw new Error(`No data found for ID: ${id}`);
         }
+        console.log(`Data fetched successfully for ID: ${id}`);
         return res;
       }),
       catchError((error) => {
-        console.error(`Error fetching data by ID: ${id}`, error);
-        return this.handleError(error);
+        console.error(`Error fetching data from ${url}`, error);
+
+        // Handle different error types
+        if (error.name === 'TimeoutError') {
+          console.error('Request timed out while fetching data.');
+          return throwError(() => new Error('Request timed out. Please try again.'));
+        } else if (error.status === 404) {
+          console.error(`Data not found for ID: ${id}`);
+          return throwError(() => new Error(`Data not found for ID: ${id}`));
+        } else {
+          console.error(`An unexpected error occurred: ${error.message}`);
+          return throwError(() => new Error('An unexpected error occurred. Please try again.'));
+        }
       })
     );
 }
+
 
 
   //Filter Search Data

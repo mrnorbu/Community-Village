@@ -6,6 +6,7 @@ import { getDynamicClass } from '../../utils/utils';
 import { IsNumberPipe } from '../../pipes/isNumber.pipe';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -16,9 +17,9 @@ import { ApiService } from '../../../services/api.service';
 export class SearchComponent implements OnInit {
   private apiService = inject(ApiService)
   private fb=inject( FormBuilder)
+  private route=inject( ActivatedRoute)
 
 constructor(
- 
 ) { }
 
 
@@ -34,7 +35,7 @@ GlobalEnums = GlobalEnums;  //enums which store tabs category to avoid type erro
 activeTab:GlobalEnums=GlobalEnums.village;  //current active tab or category to show data
 today= new Date();   //today's date
 endpoint:paginatedEndpoints=paginatedEndpoints.villages;  //endpoint of different category of data
-
+searchPath: string = ''; // Store the dynamic part after /search
 
 districts:any[]=[];   //to store districts data open in dropdown
 villages:any[]=[];   //to store village filter after selecting district
@@ -50,8 +51,52 @@ userInputs: FormGroup = this.fb.group({
 
 
       ngOnInit() {
+        this.getUrlParam();
          this.drillDownDistrict()  //drill down district data on load
          this. loadPaginatedData()   //load initail data for selected or default tab
+      }
+
+      getUrlParam(){
+        this.route.paramMap.subscribe({
+          next: (params) => {
+            const searchPath = params.get('type');
+            if (searchPath) {
+              this.setActiveTabParam(searchPath);
+            } else {
+              console.warn('No valid parameter found. Running default search.');
+            }
+          },
+          error: (error) => {
+            console.error('Error fetching parameter:', error);
+          },
+        });
+      }
+     
+      setActiveTabParam(path:string){
+        switch (path) {
+          case 'village':
+            this.activeTab = GlobalEnums.village;
+            break;
+      
+            case 'homestay':
+            this.activeTab = GlobalEnums.homestays;
+            break;
+
+            case 'product':
+              this.activeTab = GlobalEnums.product;
+              break;
+
+              case 'activity':
+                this.activeTab = GlobalEnums.activities;
+            break;
+            case 'event':
+              this.activeTab = GlobalEnums.events;
+          break;
+            
+          default:
+            console.warn('Invalid tab selected!');
+        }
+      
       }
 
       getClass(input:number){

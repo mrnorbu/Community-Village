@@ -7,13 +7,29 @@ import { EventMainComponent } from './event/event-main/event-main.component';
 import { HomestayMainComponent } from './homestay/homestay-main/homestay-main.component';
 import { LocalProductMainComponent } from './local-product/localProduct-main/localProduct-main.component';
 import { ActivityMainComponent } from './activity/activity-main/activity-main.component';
+import { idCheckGuard } from '../guards/id-check.guard';
 
 export const routes: Routes = [
-   { path:'', component: HomeMainComponent},
-   { path: 'village', component: VillageMainComponent },
-   { path: 'search', component: SearchComponent  },
-   {path:'event', component:EventMainComponent},
-   {path:'homestay',component:HomestayMainComponent},
-   {path:'product',component:LocalProductMainComponent},
-   {path:'activity',component:ActivityMainComponent}
+  // Search route for search if ID is missing
+  {path:'', component:HomeMainComponent},
+  {
+   path: 'search',
+   children:[
+      {path:'',
+         component:SearchComponent,
+         pathMatch:'full'
+      },
+      {
+         path:':type',
+         component:SearchComponent
+      }
+   ]
+
+ },
+
+   {path: 'village',component:VillageMainComponent, canActivate:[idCheckGuard]}, //gurad check if there is id present with url if not there redirect search component 
+   {path:'event', component:EventMainComponent,canActivate:[idCheckGuard]},
+   {path:'homestay',component:HomestayMainComponent, canActivate:[idCheckGuard]},
+   {path:'product',component:LocalProductMainComponent, canActivate:[idCheckGuard]},
+   {path:'activity',component:ActivityMainComponent, canActivate:[idCheckGuard]}
 ];
