@@ -4,6 +4,7 @@ import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../
 import { ProductsService } from '../../../services/products.service';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { paginatedEndpoints } from '../../globalEnums.enum';
 
 @Component({
   selector: 'app-products-carousel',
@@ -22,9 +23,7 @@ export class ProductsCarouselComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      initializeOwlCarousel('.product-carousel',true,true,24,false,[1,3,4]);
-    }, 1000);
+  
   }
 
   ngOnDestroy() {
@@ -38,14 +37,23 @@ getClass(input:number){
 
 
 getProducts(): void {
-  this.apiService.getData('website/products').subscribe({
+  this.apiService.getPaginatedData(paginatedEndpoints.products,1,4).subscribe({
     next: (data: any) => {
      
-    this.products = data.map((product: any) => ({
-      ...product, // Spread the existing properties
-      image: 'https://placehold.co/600x400' // Add a placeholder image
-    }));
-      
+      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
+        // Enrich the fetched data with additional properties
+        this.products = data.data.map((item: any) => ({
+          ...item,
+          image: 'https://placehold.co/600x400', // Add static image
+        }));
+      }
+
+    if (this.products.length > 0) {
+      setTimeout(() => {
+        initializeOwlCarousel('.product-carousel',true,true,24,false,[1,3,4]);
+      }, 300);
+    }
+
     },
     error: (error:any) => {
       console.error('Error fetching Products:', error);

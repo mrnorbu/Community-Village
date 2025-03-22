@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ApiService } from '../../../services/api.service';
+import { paginatedEndpoints } from '../../globalEnums.enum';
 
 @Component({
   selector: 'app-upcoming-events',
@@ -25,11 +26,10 @@ export class UpcomingEventsComponent implements OnInit{
  
 
   getEvents(): void {
-    this.apiService.getData('website/events').subscribe({
+    this.apiService.getPaginatedData(paginatedEndpoints.events,1,15).subscribe({
       next: (data: any) => {
-       
-      this.events = data;
-        
+      this.events = data.data;  
+      console.log(this.events)  
       },
       error: (error:any) => {
         console.error('Error fetching Events:', error);

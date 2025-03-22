@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
-import { ActivitiesService } from '../../../services/activities.service';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
-declare var $: any; // Declare jQuery
+import { paginatedEndpoints } from '../../globalEnums.enum';
 
 @Component({
   selector: 'app-adventures',
@@ -24,9 +23,7 @@ export class AdventuresComponent implements OnInit ,AfterViewInit,OnDestroy{
 
   
   ngAfterViewInit(): void {
-   setTimeout(() => {
-    initializeOwlCarousel('.adventure-carousel',true,true,5,false,[1,3,5]);
-   }, 500);
+
 }
 
   ngOnDestroy() {
@@ -41,14 +38,23 @@ getClass(input:number):string
 
 
 getActivities(): void {
-  this.apiService.getData('website/activities').subscribe({
+  this.apiService.getPaginatedData(paginatedEndpoints.activities,1,5).subscribe({
     next: (data: any) => {
      
-    this.activities = data.map((activity: any) => ({
-      ...activity, // Spread the existing properties
-      image: 'https://placehold.co/600x400' // Add a placeholder image
-    }));
-      
+      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
+        // Enrich the fetched data with additional properties
+        this.activities = data.data.map((item: any) => ({
+          ...item,
+          image: 'https://placehold.co/600x400', // Add static image
+        }));
+      }
+
+      // Ensure carousel initializes after DOM updates
+      if (this.activities.length > 0) {
+        setTimeout(() => {
+          initializeOwlCarousel('.adventure-carousel', true, true, 5, false, [1, 3, 5]);
+        }, 300); // Small delay to ensure DOM is updated
+      }    
     },
     error: (error:any) => {
       console.error('Error fetching Activities:', error);

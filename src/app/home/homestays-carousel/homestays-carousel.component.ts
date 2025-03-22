@@ -4,6 +4,7 @@ import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../
 import { RouterLink } from '@angular/router';
 import { HomestaysService } from '../../../services/homestays.service';
 import { ApiService } from '../../../services/api.service';
+import { paginatedEndpoints } from '../../globalEnums.enum';
 
 @Component({
   selector: 'app-homestays-carousel',
@@ -22,9 +23,7 @@ export class HomestaysCarouselComponent implements OnInit ,AfterViewInit,OnDestr
   }
 
   ngAfterViewInit(): void {
-      setTimeout(() => {
-        initializeOwlCarousel('.homestays-carousel',true,true,5,false,[1,2,5]) 
-      }, 500);
+    
   }
 
   ngOnDestroy() {
@@ -39,13 +38,23 @@ getClass(input:number){
 
  
 getHomestays(): void {
-  this.apiService.getData('website/homestays').subscribe({
+  this.apiService.getPaginatedData(paginatedEndpoints.homestays,1,5).subscribe({
     next: (data: any) => {
      
-    this.homestays = data.map((homestay: any) => ({
-      ...homestay, // Spread the existing properties
-      image: 'https://placehold.co/600x400' // Add a placeholder image
-    }));
+      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
+        // Enrich the fetched data with additional properties
+        this.homestays = data.data.map((item: any) => ({
+          ...item,
+          image: 'https://placehold.co/600x400', // Add static image
+        }));
+      }
+
+     // Ensure carousel initializes after DOM updates
+     if (this.homestays.length > 0) {
+      setTimeout(() => {
+        initializeOwlCarousel('.homestays-carousel',true,true,5,false,[1,2,5]) 
+      }, 300);// Small delay to ensure DOM is updated
+    }    
   
     },
     error: (error:any) => {

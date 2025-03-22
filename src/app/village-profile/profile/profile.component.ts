@@ -3,8 +3,6 @@ import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/co
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ApiService } from '../../../services/api.service';
 
-declare var $: any; // Declare jQuery
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -41,32 +39,31 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
 
 
-getVillages(): void {
-  this.apiService.getData('website/committees').subscribe({
-    next: (data: any) => {
-      // Map the data and add the images array to each committee
-      this.committeeInfo = data.map((committee: any) => ({
-        ...committee, // Spread the existing properties
-        images: [] = [
-          { url: 'assets/images/villages/namchi.jpg' },
-          { url: 'assets/images/villages/rinchenpong.jpg' },
-          { url: 'assets/images/villages/lingee.jpg' },
-          { url: 'assets/images/villages/lachen.jpg' },
-          { url: 'assets/images/villages/martam.jpg' }
-        ]
-      }));
-      console.log(this.committeeInfo)
-    },
-    error: (error: any) => {
-      console.error('Error fetching CommitteesInfo:', error);
-      this.committeeInfo = []; // Fallback to an empty array
-      console.log(this.committeeInfo)
-    },
-    complete: () => {
-      console.log('CommitteesInfo fetch completed.');
-    }
-  });
-}
+  getVillages(): void {
+    this.apiService.getDataById('website/committee',1).subscribe({
+      next: (data: any) => {
+        // Directly modify the single object (not an array)
+        this.committeeInfo = {
+          ...data, // Spread the existing properties
+          images: [
+             'assets/images/villages/namchi.jpg' ,
+             'assets/images/villages/rinchenpong.jpg',
+             'assets/images/villages/lingee.jpg' ,
+             'assets/images/villages/lachen.jpg' ,
+             'assets/images/villages/martam.jpg' 
+          ]
+        };
+      },
+      error: (error: any) => {
+        console.error('Error fetching CommitteeInfo:', error);
+        this.committeeInfo = null; // Fallback to null
+      },
+      complete: () => {
+        console.log('CommitteeInfo fetch completed.');
+      }
+    });
+  }
+  
 
 
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams  } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, timeout } from 'rxjs/operators';
 import { environment } from '../enviroments/enviroment';
+import { paginatedEndpoints } from '../app/globalEnums.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -31,16 +32,52 @@ export class ApiService {
       );
   }
 
-  // GET request by ID
-  getDataById<T>(endpoint: string, id: any): Observable<T> {
-    return this.http
-      .get<T>(`${this.apiUrl}/${endpoint}/${id}`, { headers: this.getHeaders() })
+// GET request by ID with improved error handling and logging
+getDataById<T>(endpoint: string, id: any): Observable<T> {
+  if (!id) {
+    console.warn('Invalid ID provided for fetching data.');
+    return throwError(() => new Error('Invalid ID provided.'));
+  }
+
+  const url = `${this.apiUrl}/${endpoint}/${id}`;
+
+  return this.http
+    .get<T>(url, { headers: this.getHeaders() })
+    .pipe(
+      timeout(this.defaultTimeout), // Apply request timeout
+      map((res: T) => {
+        if (!res) {
+          console.warn(`No data found for ID: ${id}`);
+        }
+        return res;
+      }),
+      catchError((error) => {
+        console.error(`Error fetching data by ID: ${id}`, error);
+        return this.handleError(error);
+      })
+    );
+}
+
+
+  //Filter Search Data
+  getFilteredData<T>(category?: string, districtId?: number, villageId?: number, search?: string): Observable<T> {
+    let params = new HttpParams();
+  
+    // Dynamically add parameters only if they have values
+    if (category?.trim()) params = params.set('category', category.trim());
+    if (districtId !== undefined && districtId !== null) params = params.set('districtId', districtId.toString());
+    if (villageId !== undefined && villageId !== null) params = params.set('villageId', villageId.toString());
+    if (search?.trim()) params = params.set('search', search.trim());
+  
+    return this.http.get<T>(`${this.apiUrl}/website/filter`, { headers: this.getHeaders(), params })
       .pipe(
         timeout(this.defaultTimeout),
         map((res: T) => res),
         catchError(this.handleError)
       );
-  }
+  }  
+
+
 
   // POST request
   postData<T>(endpoint: string, data: any): Observable<T> {
@@ -75,10 +112,68 @@ export class ApiService {
       );
   }
 
-  // Error handler
-  private handleError(error: any): Observable<never> {
-    // Implement your error handling logic here
-    console.error('An error occurred:', error);
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+
+
+//  Get Paginated Products with Only Page Number and Page Size
+getPaginatedData<T>(endpoint:paginatedEndpoints,pageNumber: number = 1, pageSize: number = 5): Observable<T> {
+  let params = new HttpParams()
+    .set('pageNumber', pageNumber.toString())
+    .set('pageSize', pageSize.toString());
+
+  return this.http
+  .get<T>(`${this.apiUrl}/${endpoint}`, {
+      headers: this.getHeaders(),
+      params,
+    })
+    .pipe(
+      timeout(this.defaultTimeout),
+      map((res: T) => res),
+      catchError(this.handleError)
+    );
+}
+
+
+// Centralized Error Handler
+private handleError(error: any): Observable<never> {
+  let errorMessage = 'Something went wrong. Please try again later.';
+
+  if (error.error instanceof ErrorEvent) {
+    // Client-side or network error
+    console.error('Client-side error:', error.error.message);
+    errorMessage = `Client-side error: ${error.error.message}`;
+  } else {
+    // Server-side error
+    console.error(`Server error (Status: ${error.status}) - ${error.message}`);
+
+    switch (error.status) {
+      case 400:
+        errorMessage = 'Bad Request. Please check your input.';
+        break;
+      case 401:
+        errorMessage = 'Unauthorized access. Please log in again.';
+        break;
+      case 403:
+        errorMessage = 'Forbidden. You don’t have permission to access this resource.';
+        break;
+      case 404:
+        errorMessage = 'Resource not found. Please try again.';
+        break;
+      case 500:
+        errorMessage = 'Internal Server Error. Please try again later.';
+        break;
+      case 503:
+        errorMessage = 'Service Unavailable. Please try again after some time.';
+        break;
+      default:
+        errorMessage = `Unexpected error occurred (Status: ${error.status}).`;
+        break;
+    }
   }
+
+  // Log detailed error information
+  console.error('Full error details:', error);
+
+  // Return a more meaningful error message
+  return throwError(() => new Error(errorMessage));
+}
 }

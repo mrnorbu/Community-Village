@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/co
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance} from '../../utils/utils'; 
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { paginatedEndpoints } from '../../globalEnums.enum';
 
 @Component({
   selector: 'app-village-carousel',
@@ -24,9 +25,7 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
 
   
   ngAfterViewInit() {
-   setTimeout(() => {
-    initializeOwlCarousel('.village-carousel',true,true,5,false,[2,3,4])
-   }, 500);
+   
   }
 
  ngOnDestroy() {
@@ -40,15 +39,25 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
 
 
   getVillages(): void {
-    this.apiService.getData('website/committees').subscribe({
+    this.apiService.getPaginatedData(paginatedEndpoints.villages,1,4).subscribe({
       next: (data: any) => {
         // Assign the data to the districts property
           // Add a placeholder image to each committee
-      this.villagesCommunity = data.map((committee: any) => ({
-        ...committee, // Spread the existing properties
-        image: 'https://placehold.co/600x400' // Add a placeholder image
-      }));
-     
+          if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
+            // Enrich the fetched data with additional properties
+            this.villagesCommunity = data.data.map((item: any) => ({
+              ...item,
+              image: 'https://placehold.co/600x400', // Add static image
+            }));
+          }
+
+
+      if (this.villagesCommunity.length > 0) {
+        setTimeout(() => {
+          initializeOwlCarousel('.village-carousel',true,true,5,false,[2,3,4])
+         }, 300);
+      }
+
       },
       error: (error:any) => {
         console.error('Error fetching Committies:', error);
