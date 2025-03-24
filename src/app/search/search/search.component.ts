@@ -6,18 +6,18 @@ import { getDynamicClass } from '../../utils/utils';
 import { IsNumberPipe } from '../../pipes/isNumber.pipe';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,UrlSegment,RouterLink, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  imports:[CommonModule, NgxPaginationModule, IsNumberPipe, ReactiveFormsModule]
+  imports:[CommonModule, NgxPaginationModule, IsNumberPipe, ReactiveFormsModule,RouterModule]
 })
 export class SearchComponent implements OnInit {
   private apiService = inject(ApiService)
   private fb=inject( FormBuilder)
-  private route=inject( ActivatedRoute)
+  private router=inject( ActivatedRoute)
 
 constructor(
 ) { }
@@ -50,53 +50,57 @@ userInputs: FormGroup = this.fb.group({
 });
 
 
-      ngOnInit() {
-        this.getUrlParam();
-         this.drillDownDistrict()  //drill down district data on load
-         this. loadPaginatedData()   //load initail data for selected or default tab
-      }
+ngOnInit() {
+  // First, check for segment
+  const hasValidSegment = this.getFirstSegment();
 
-      getUrlParam(){
-        this.route.paramMap.subscribe({
-          next: (params) => {
-            const searchPath = params.get('type');
-            if (searchPath) {
-              this.setActiveTabParam(searchPath);
-            } else {
-              console.warn('No valid parameter found. Running default search.');
-            }
-          },
-          error: (error) => {
-            console.error('Error fetching parameter:', error);
-          },
-        });
-      }
-     
+  // Drill down data regardless
+  this.drillDownDistrict();
+
+  // Only run loadPaginatedData() if no valid segment was found
+  if (!hasValidSegment) {
+    this.loadPaginatedData();
+  }
+}
+
+getFirstSegment(): boolean {
+  let segmentFound = false;
+
+  this.router.data.subscribe((data) => {
+    if (data['type']) {
+      // If segment exists, set active tab and load data
+      this.setActiveTabParam(data['type']);
+      this.loadPaginatedData(); // Run only if segment is found
+      segmentFound = true;
+    }
+  });
+
+  return segmentFound;
+}
+
+    
       setActiveTabParam(path:string){
         switch (path) {
           case 'village':
-            this.activeTab = GlobalEnums.village;
-            break;
-      
+            this.setActiveTabs(GlobalEnums.village);
+            break;    
             case 'homestay':
-            this.activeTab = GlobalEnums.homestays;
+              this.setActiveTabs(GlobalEnums.homestays);        
             break;
-
             case 'product':
-              this.activeTab = GlobalEnums.product;
+              this.setActiveTabs(GlobalEnums.product);         
               break;
-
               case 'activity':
-                this.activeTab = GlobalEnums.activities;
+              this.setActiveTabs(GlobalEnums.activities);            
             break;
             case 'event':
-              this.activeTab = GlobalEnums.events;
-          break;
-            
+              this.setActiveTabs(GlobalEnums.events);
+          break;      
           default:
             console.warn('Invalid tab selected!');
         }
-      
+         
+       
       }
 
       getClass(input:number){
@@ -347,9 +351,7 @@ onPageChange(pageNumber: number): void {
         this.paginatedData = [];
         this.isDataAvailable = false;
         this.loading = false;
-        alert("no data found")
         console.warn('No data found');
-        alert(this.isDataAvailable)
       }
       
       

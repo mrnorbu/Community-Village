@@ -12,7 +12,7 @@
                     <p class="text-[#1C2A0E] text-base mb-4">
                         Stay updated on the latest cultural celebrations, festivals, and unique experiences happening across Sikkim's village communities. From vibrant traditional dances to immersive homestay experiences, these events offer visitors a chance to connect with the rich heritage and warm hospitality of Sikkim.
                     </p>
-                    <a href="#" class="inline-flex px-6 py-2.5 bg-[#1C2A0E] text-white rounded-full hover:bg-[#2A3F15] transition duration-300 text-sm">
+                    <a [routerLink]="'/event'" class="inline-flex px-6 py-2.5 bg-[#1C2A0E] text-white rounded-full hover:bg-[#2A3F15] transition duration-300 text-sm">
                         Explore Events
                     </a>
                 </div>
@@ -58,7 +58,7 @@
                                           {{event.description}}
                                         </p>
                                         <!-- Know More Link -->
-                                        <a href="#" class="inline-flex items-center w-fit border border-[#1C2A0E] rounded-full px-2 py-0.5 text-xs text-[#1C2A0E] hover:bg-[#1C2A0E] hover:text-white transition-all duration-300">
+                                        <a [routerLink]="['/event',event.eventId]"  class="inline-flex items-center w-fit border border-[#1C2A0E] rounded-full px-2 py-0.5 text-xs text-[#1C2A0E] hover:bg-[#1C2A0E] hover:text-white transition-all duration-300">
                                             Know More 
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

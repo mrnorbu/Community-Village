@@ -5,13 +5,14 @@ import { HomestaysCarouselComponent } from '../homestays-carousel/homestays-caro
 import { ProductsCarouselComponent } from '../products-carousel/products-carousel.component';
 import { UpcomingEventsComponent } from '../upcoming-events/upcoming-events.component';
 import { VillageCarouselComponent } from '../village-carousel/village-carousel.component';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home-main',
   templateUrl: './home-main.component.html',
   styleUrls: ['./home-main.component.css'],
   imports:[HeroSectionComponent,AdventuresComponent,HomestaysCarouselComponent,
-    ProductsCarouselComponent,UpcomingEventsComponent,VillageCarouselComponent]
+    ProductsCarouselComponent,UpcomingEventsComponent,VillageCarouselComponent,RouterModule]
 })
 export class HomeMainComponent implements OnInit {
 

@@ -3,12 +3,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-upcoming-events',
   templateUrl: './upcoming-events.component.html',
   styleUrls: ['./upcoming-events.component.css'],
-  imports:[CommonModule,NgxPaginationModule]
+  imports:[CommonModule,NgxPaginationModule, RouterLink]
 })
 export class UpcomingEventsComponent implements OnInit{
 

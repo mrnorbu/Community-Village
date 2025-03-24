@@ -5,9 +5,9 @@
         <div class="relative flex items-center justify-center">
             <div class="w-full aspect-square max-w-[400px] bg-[#1C2A0E] rounded-lg p-8 flex flex-col items-center justify-center">
                 <div class="text-center">
-                    <p class="text-6xl font-bold text-white mb-2">15</p>
-                    <p class="text-2xl font-semibold text-white/90 mb-1">March</p>
-                    <p class="text-xl text-white/80">2024</p>
+                    <p class="text-6xl font-bold text-white mb-2">{{eventInfo.startDate| date:'d'}}</p>
+                    <p class="text-2xl font-semibold text-white/90 mb-1">{{eventInfo.startDate| date:'MMMM'}}</p>
+                    <p class="text-xl text-white/80">{{eventInfo.startDate| date:'yyyy'}}</p>
 
                 </div>
             </div>
@@ -18,10 +18,10 @@
             <!-- Header -->
             <div class="mb-4">
                 <div class="flex flex-col mb-2">
-                    <h1 class="text-2xl font-bold mb-1">Sikkim Spring Festival</h1>
+                    <h1 class="text-2xl font-bold mb-1">{{eventInfo.eventName}}</h1>
                     <div class="flex items-center gap-2 text-gray-600 text-sm">
-                        <i data-lucide="map-pin" class="w-4 h-4"></i>
-                        <p>Gangtok, East Sikkim</p>
+                        <!-- <i data-lucide="map-pin" class="w-4 h-4"></i> -->
+                        <p>{{eventInfo.location}} , {{eventInfo.region}}</p>
                     </div>
                 </div>
             </div>
@@ -29,29 +29,17 @@
             <!-- Description -->
             <div class="mb-6">
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    Join us for the vibrant Sikkim Spring Festival, celebrating the blooming of rhododendrons and local culture. Experience traditional dances, music performances, local cuisine, and handicraft exhibitions. A perfect opportunity to immerse yourself in Sikkimese traditions and natural beauty.
-                </p>
+                    {{eventInfo.description}}
             </div>
 
             <!-- Event Features -->
             <div class="mb-6">
                 <div class="flex flex-wrap gap-2">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
-                        <i data-lucide="music" class="w-4 h-4 text-gray-600"></i>
-                        <span class="text-sm text-gray-600">Live Performances</span>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full" *ngFor="let tag of eventInfo.tags">
+                        <!-- <i data-lucide="music" class="w-4 h-4 text-gray-600"></i> -->
+                        <span class="text-sm text-gray-600">{{tag}}</span>
                     </div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
-                        <i data-lucide="utensils" class="w-4 h-4 text-gray-600"></i>
-                        <span class="text-sm text-gray-600">Food Stalls</span>
-                    </div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
-                        <i data-lucide="shopping-bag" class="w-4 h-4 text-gray-600"></i>
-                        <span class="text-sm text-gray-600">Handicraft Market</span>
-                    </div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full">
-                        <i data-lucide="users" class="w-4 h-4 text-gray-600"></i>
-                        <span class="text-sm text-gray-600">Family Friendly</span>
-                    </div>
+                  
                 </div>
             </div>
 
@@ -67,8 +55,8 @@
                         <i data-lucide="phone" class="w-5 h-5 text-gray-600"></i>
                     </div>
                     <div>
-                        <p class="font-medium">+91 98765 43210</p>
-                        <p class="text-sm text-gray-600">Event Coordinator</p>
+                        <p class="font-medium">Village/Committee</p>
+                        <p class="text-sm text-gray-600">{{eventInfo.committeeName}}</p>
                     </div>
                 </div>
 
@@ -77,9 +65,11 @@
                     <div class="w-8 h-8 flex items-center justify-center">
                         <i data-lucide="ticket" class="w-5 h-5 text-gray-600"></i>
                     </div>
-                    <div>
-                        <p class="font-medium">Free Entry</p>
-                        <p class="text-sm text-gray-600">Open to all</p>
+                    <div class="gap-1 p-0.5">
+                        <p class="font-medium">Start Date</p>
+                        <p class="text-sm text-gray-600">{{eventInfo.endDate| date:'dd-MM-yyyy'}}</p>
+                        <p class="font-medium mt-3">End Date</p>
+                        <p class="text-sm text-gray-600">{{eventInfo.endDate| date:'dd-MM-yyyy'}}</p>
                     </div>
                 </div>
             </div>

@@ -15,9 +15,9 @@ export enum paginatedEndpoints{
 }
 
 export enum getByIDEndpoints{
-    villages = 'website/committees',
-    products ='website/paginated-products',
-    homestays ='website/paginated-homestays',
-    activities ='website/paginated-activities',
-    events ='website/paginated-events'
+    villages = 'website/committee',
+    products ='website/product',
+    homestays ='website/homestay',
+    activities ='website/activity',
+    events ='website/event'
 }
