@@ -21,3 +21,7 @@ export enum getByIDEndpoints{
     activities ='website/activity',
     events ='website/event'
 }
+
+export enum placeholder{
+    image='https://placehold.co/600x400'
+}

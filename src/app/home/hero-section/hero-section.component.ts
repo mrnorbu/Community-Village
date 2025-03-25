@@ -15,7 +15,13 @@ import { of } from 'rxjs';
 })
 export class HeroSectionComponent {
   private apiService = inject(ApiService);
-  counts: any = {};
+  counts: any = {
+    villageCommunities:'00',
+    homeStays:'00',
+    thingsToDo:'00',
+    localProducts:'00',
+    events:'00'
+  };
   districts:any=[];
   villages:any=[];
   filteredVillages:any=[];

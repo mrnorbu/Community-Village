@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance} from '../../utils/utils'; 
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance,getProfileImage} from '../../utils/utils'; 
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
@@ -18,6 +18,7 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
 
 
   villagesCommunity:any[]=[]
+
 
   ngOnInit(): void {
    this.getVillages();
@@ -43,12 +44,9 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
       next: (data: any) => {
         // Assign the data to the districts property
           // Add a placeholder image to each committee
-          if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-            // Enrich the fetched data with additional properties
-            this.villagesCommunity = data.data.map((item: any) => ({
-              ...item,
-              image: 'https://placehold.co/600x400', // Add static image
-            }));
+          if (data && data.data && data.data.length > 0) {
+        
+            this.villagesCommunity = data.data
           }
 
 
@@ -72,5 +70,11 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
     });
   }
 
+
+
+   // Utility function is now accessible
+   getProfileImage(imageArray: any[]): string {
+    return getProfileImage(imageArray);
+  }
 
 }

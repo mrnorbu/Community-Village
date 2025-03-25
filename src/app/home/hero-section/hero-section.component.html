@@ -181,25 +181,28 @@
   
                 <!-- Home Stays -->
                 <div class="text-center border-r border-gray-200">
-                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.homeStays}}<span class="text-3xl sm:text-4xl md:text-5xl">+</span></h3>
+                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.homeStays}}<span class="text-3xl sm:text-4xl md:text-5xl">@if (counts.homeStays>0) {+}</span></h3>
                     <p class="text-[#1C2A0E] text-sm sm:text-base">Home Stays</p>
                 </div>
   
                 <!-- Things to do -->
                 <div class="text-center border-r border-gray-200">
-                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.thingsToDo}}<span class="text-3xl sm:text-4xl md:text-5xl">+</span></h3>
+                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.thingsToDo}}
+                        <span class="text-3xl sm:text-4xl md:text-5xl">@if (counts.thingsToDo>0) {+}</span></h3>
                     <p class="text-[#1C2A0E] text-sm sm:text-base">Things to do</p>
                 </div>
   
                 <!-- Local Products -->
                 <div class="text-center border-r border-gray-200">
-                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.localProducts}}<span class="text-3xl sm:text-4xl md:text-5xl">+</span></h3>
+                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.localProducts}}
+                        <span class="text-3xl sm:text-4xl md:text-5xl">@if (counts.localProducts>0) {+}</span></h3>
                     <p class="text-[#1C2A0E] text-sm sm:text-base">Local Products</p>
                 </div>
   
                 <!-- Events -->
                 <div class="text-center">
-                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.events}}<span class="text-3xl sm:text-4xl md:text-5xl">+</span></h3>
+                    <h3 class="text-[#1C2A0E] font-bold text-4xl sm:text-5xl md:text-6xl  mb-2">{{counts.events}}
+                        <span class="text-3xl sm:text-4xl md:text-5xl">@if (counts.events>0) {+}</span></h3>
                     <p class="text-[#1C2A0E] text-sm sm:text-base">Events</p>
                 </div>
             </div>

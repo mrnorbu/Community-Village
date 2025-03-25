@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
-import { ProductsService } from '../../../services/products.service';
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
@@ -41,12 +40,8 @@ getProducts(): void {
     next: (data: any) => {
      
       if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-        // Enrich the fetched data with additional properties
-        this.products = data.data.map((item: any) => ({
-          ...item,
-          image: 'https://placehold.co/600x400', // Add static image
-        }));
-      }
+        this.products = data.data
+            }
 
     if (this.products.length > 0) {
       setTimeout(() => {
@@ -68,6 +63,9 @@ getProducts(): void {
   });
 }
 
+getProfileImage(images:any[]):string{
+  return getProfileImage(images)
+}
 
 
 }

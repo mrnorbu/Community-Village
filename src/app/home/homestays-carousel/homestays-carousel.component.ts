@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit ,AfterViewInit,OnDestroy, inject} from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
 import { HomestaysService } from '../../../services/homestays.service';
 import { ApiService } from '../../../services/api.service';
@@ -41,12 +41,8 @@ getHomestays(): void {
   this.apiService.getPaginatedData(paginatedEndpoints.homestays,1,5).subscribe({
     next: (data: any) => {
      
-      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-        // Enrich the fetched data with additional properties
-        this.homestays = data.data.map((item: any) => ({
-          ...item,
-          image: 'https://placehold.co/600x400', // Add static image
-        }));
+      if (data && data.data && data.data.length > 0) {
+        this.homestays = data.data;
       }
 
      // Ensure carousel initializes after DOM updates
@@ -69,5 +65,11 @@ getHomestays(): void {
     }
   });
 }
+
+getProfileImage(images:any[]):string
+{
+  return getProfileImage(images);
+}
+
 
 }

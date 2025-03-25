@@ -5,15 +5,17 @@
           <div class="group flex flex-col h-auto">
             <div class="relative overflow-hidden rounded-lg mb-4 aspect-square md:min-h-[260px] max-h-[260px]">
               <img 
-                [src]="village.image"
+              
+
+                [src]="getProfileImage(village.images)"
                 [alt]="village.committeeName" 
                 class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
               />
             </div>
             <div class="flex flex-col flex-grow">
-              <h4 class="text-lg mb-2 font-bold">{{village.committeeName}}</h4>
+              <h4 class="text-lg mb-2 font-bold line-clamp-1">{{village.committeeName}}</h4>
               <span class="inline-block w-fit px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:text-white mb-3" [ngClass]="getClass(i+1)">{{village.districtName}}</span>
-              <p class="text-gray-700 mb-3 line-clamp-3 text-base">
+              <p class="text-gray-700 mb-3 line-clamp-3 text-base min-h-20">
                 {{village.description}}
               </p>
               <div class="mt-2">

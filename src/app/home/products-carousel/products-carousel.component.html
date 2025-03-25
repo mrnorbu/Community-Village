@@ -7,7 +7,7 @@
                   <div class="group flex flex-col h-auto">
                       <div class="relative overflow-hidden rounded-lg mb-4 aspect-[4/3] min-h-[170px] max-h-[170px]">
                           <img 
-                             [src]="product.image"
+                             [src]="getProfileImage(product.images)"
                               [alt]="product.productName"
                               class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
                           />
@@ -21,15 +21,17 @@
                               <span class="inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 bg-[#1C2A0E] text-white">{{product.committeeId}}CN</span>
                               <span class="inline-block px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:text-white" [ngClass]="getClass(i+1)">{{product.committeeId}}CA</span>
                           </div>
-                          <p class="text-gray-700 mb-4 line-clamp-3">
+                          <p class="text-gray-700 mb-4 line-clamp-3 min-h-16">
                               {{product.description}}
                           </p>
                        
                           <!-- Tags -->
                           <div class="flex flex-wrap gap-1.5 mb-2">
-                            <span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded" *ngFor="let tag of product.tags">
+                            <div *ngFor="let tag of product.tags; let i =index">
+                            <span *ngIf="i<=2" class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
                                 {{tag}}
                             </span>
+                        </div>
                         </div>
 
                           <a  [routerLink]="['/product',product.productId]" routerLinkActive="router-link-active"  class="inline-flex items-center mb-2 mt-2 w-fit border border-[#1C2A0E] rounded-full px-4 py-1.5 text-sm text-[#1C2A0E] hover:bg-[#1C2A0E] hover:text-white transition-all duration-300">

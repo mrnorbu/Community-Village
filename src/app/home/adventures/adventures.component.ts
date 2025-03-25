@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
@@ -11,7 +11,7 @@ import { paginatedEndpoints } from '../../globalEnums.enum';
   styleUrls: ['./adventures.component.css'],
   imports:[CommonModule,RouterLink]
 })
-export class AdventuresComponent implements OnInit ,AfterViewInit,OnDestroy{
+export class AdventuresComponent implements OnInit ,OnDestroy{
 
   private apiService = inject(ApiService)
 
@@ -22,10 +22,6 @@ export class AdventuresComponent implements OnInit ,AfterViewInit,OnDestroy{
   }
 
   
-  ngAfterViewInit(): void {
-
-}
-
   ngOnDestroy() {
     destroyOwlInstance('.adventure-carousel')
   }
@@ -41,12 +37,8 @@ getActivities(): void {
   this.apiService.getPaginatedData(paginatedEndpoints.activities,1,5).subscribe({
     next: (data: any) => {
      
-      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-        // Enrich the fetched data with additional properties
-        this.activities = data.data.map((item: any) => ({
-          ...item,
-          image: 'https://placehold.co/600x400', // Add static image
-        }));
+      if (data && data.data && data.data.length > 0) {
+        this.activities = data.data;
       }
 
       // Ensure carousel initializes after DOM updates
@@ -68,6 +60,11 @@ getActivities(): void {
     }
   });
 }
+
+getProfileImage(images:any[]):string{
+  return getProfileImage(images);
+}
+
 
 
 }

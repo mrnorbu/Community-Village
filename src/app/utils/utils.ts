@@ -1,7 +1,6 @@
 // src/app/utils/color-utils.ts
+
 declare var $: any; // Declare jQuery
-
-
 
 const colorClasses = [
     { bg: 'bg-blue-500/10', text: 'text-blue-500', hover: 'hover:bg-blue-500' },
@@ -64,4 +63,21 @@ export function destroyOwlInstance(carouselClass:string):boolean{
 
 
 
+// utils.ts or image-utils.ts
+export function getProfileImage(imageArray: any[]): string {
+  const placeholderImage: string = 'https://placehold.jp/3d4070/ffffff/150x150.png';
+
+  // Check if the input is a valid array
+  if (!Array.isArray(imageArray) || imageArray.length === 0) {
+    return placeholderImage;
+  }
+
+  // Find the profile image with isProfileImage = true
+  const profileImage = imageArray.find(
+    (img: any) => img && img.isProfileImage && typeof img.url === 'string'
+  );
+
+  // Return the profile image URL if found, otherwise return the placeholder
+  return profileImage?.url ?? placeholderImage;
+}
 
