@@ -108,7 +108,6 @@
   </div>
 </section>
 
-  
     <!-- Results Grid Section: Displays search results -->
     <section class="py-5 bg-gray-50 relative">
         <div class="max-w-6xl mx-auto px-2 ">
@@ -133,7 +132,7 @@
                *ngFor="let village of paginatedData  | paginate: { itemsPerPage: itemPerPage, currentPage: page,totalItems:totalItems }; let i= index">
                 <div class="flex flex-col md:flex-row h-auto md:h-48">
                     <div class="w-full md:w-48 h-48 md:h-full relative overflow-hidden">
-                        <img [src]="village.image" [alt]="village.committeeName" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"/>
+                        <img [src]="getProfileImage(village.images)" [alt]="village.committeeName" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"/>
                     </div>
                     <div class="flex-1 p-4 flex flex-col">
                         <div class="flex-grow">
@@ -181,7 +180,7 @@
   
   <div class="flex flex-col md:flex-row h-auto md:h-48">
         <div class="w-full md:w-48 h-48 md:h-full relative overflow-hidden">
-            <img [src]="homestay.image" [alt]="homestay.homestayName" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"/>
+            <img [src]="getProfileImage(homestay.images)" [alt]="homestay.homestayName" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"/>
         </div>
         <div class="flex-1 p-4 flex flex-col">
             <div class="flex-grow">
@@ -221,7 +220,7 @@
     <div class="flex flex-col md:flex-row h-auto md:h-48">
         <div class="w-full md:w-48 h-48 md:h-full relative overflow-hidden">
             <img 
-               [src]="activity.image" 
+               [src]="getProfileImage(activity.images)" 
                [alt]="activity.activityName"
                 class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
             />
@@ -286,7 +285,7 @@
         <!-- Image Container -->
         <div class="w-full md:w-48 h-48 md:h-full relative overflow-hidden">
             <img 
-                [src]="product.image"
+                [src]="getProfileImage(product.images)"
                 [alt]="product.productName"
                 class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
             />

@@ -51,6 +51,8 @@ getHomestays(): void {
         initializeOwlCarousel('.homestays-carousel',true,true,5,false,[1,2,5]) 
       }, 300);// Small delay to ensure DOM is updated
     }    
+
+    
   
     },
     error: (error:any) => {

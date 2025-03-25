@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit,inject } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GlobalEnums, paginatedEndpoints } from '../../globalEnums.enum';
-import { getDynamicClass } from '../../utils/utils';
+import { getDynamicClass, getProfileImage } from '../../utils/utils';
 import { IsNumberPipe } from '../../pipes/isNumber.pipe';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
@@ -355,5 +355,8 @@ onPageChange(pageNumber: number): void {
       }
       
       
+      getProfileImage(imageArray: any[]): string {
+        return getProfileImage(imageArray);
+      }
 
 }
