@@ -64,27 +64,48 @@ PaginatedData(
 
   return this.apiService.getPaginatedData<any>(endpoint, pageNo, itemPerPage).pipe(
     map((data: any) => {
-      // ✅ Valid Data Check
-      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-
-           // ✅ Data found
-           this.noDataFoundSubject.next(false);
-           this.errorMessageSubject.next(null);
+      // ✅ More robust data parsing to handle different API response formats
+      console.log('API Response:', data); // Log the raw response for debugging
+      
+      // Try to handle different response structures
+      let items = [];
+      let pageNumber = pageNo;
+      let totalRecords = 0;
+      
+      if (data) {
+        if (data.data && Array.isArray(data.data)) {
+          // Original API format
+          items = data.data;
+          pageNumber = data.pageNumber || pageNo;
+          totalRecords = data.totalRecords || items.length;
+        } else if (Array.isArray(data)) {
+          // Alternative API format - direct array
+          items = data;
+          totalRecords = items.length;
+        } else if (typeof data === 'object') {
+          // Alternative API format with different field names
+          items = data.items || data.results || data.data || [];
+          pageNumber = data.pageNumber || data.page || pageNo;
+          totalRecords = data.totalRecords || data.total || data.count || items.length;
+        }
+      }
+      
+      // Check if we have valid items
+      if (items.length > 0) {
+        // ✅ Data found
+        this.noDataFoundSubject.next(false);
+        this.errorMessageSubject.next(null);
 
         return {
-
-          items: data.data, // Return raw data
-          pageNumber: data.pageNumber,
-          totalRecords: data.totalRecords,
+          items: items,
+          pageNumber: pageNumber,
+          totalRecords: totalRecords,
           isDataAvailable: true,
         };
       } else {
         // ✅ Handle No Data Case
-
-          // ❌ No Data Found
-          this.noDataFoundSubject.next(true);
-          this.errorMessageSubject.next(null);
-
+        this.noDataFoundSubject.next(true);
+        this.errorMessageSubject.next(null);
 
         return {
           items: [],
@@ -158,17 +179,39 @@ fetchFilteredData(
     )
     .pipe(
       map((data: any) => {
-        // ✅ Check if data is valid and available
-        if (data && Array.isArray(data) && data.length > 0) {
-          // ✅ Enrich data if necessary
-          const enrichedData = data;
-
+        // ✅ More robust data parsing to handle different API response formats
+        console.log('API Filter Response:', data); // Log the raw response for debugging
+        
+        let items = [];
+        
+        if (data) {
+          if (Array.isArray(data)) {
+            items = data;
+          } else if (data.data && Array.isArray(data.data)) {
+            items = data.data;
+          } else if (data.items && Array.isArray(data.items)) {
+            items = data.items;
+          } else if (data.results && Array.isArray(data.results)) {
+            items = data.results;
+          } else if (typeof data === 'object') {
+            // Try to extract data from any property that is an array
+            for (const key in data) {
+              if (Array.isArray(data[key]) && data[key].length > 0) {
+                items = data[key];
+                break;
+              }
+            }
+          }
+        }
+        
+        // Check if we have valid items
+        if (items.length > 0) {
           // ✅ Data found – update state
           this.noDataFoundSubject.next(false);
           this.errorMessageSubject.next(null);
 
           return {
-            items: enrichedData, // ✅ Enriched Data
+            items: items,
             isDataAvailable: true,
           };
         } else {
@@ -275,25 +318,26 @@ drillDownVillage(districtId: number): Observable<{
 
 
 private getFriendlyErrorMessage(error: any): string {
-  const errorCode = error?.status || 500;
-  console.log(error);
-
-  switch (errorCode) {
-    case 400:
-      return 'Bad Request! Please check your inputs and try again. Code: 400';
-    case 401:
-      return 'Unauthorized access! Please log in. Code: 401';
-    case 403:
-      return 'Access denied! You do not have permission. Code: 403';
-    case 404:
-      return 'Data not found! Please try a different query. Code: 404';
-    case 500:
-      return 'Internal server error! Try again later. Code: 500';
-    case 0:
-      return 'Network error! Please check your internet connection. Code: 0';
-    default:
-      return error?.error?.message +' Error Code: '+error.errorCode || 'An unknown error occurred. Please try again.';
+  // Default message
+  let message = 'An unexpected error occurred. Please try again.';
+  
+  // Extract error message based on different possible structures
+  if (error) {
+    if (error.message) {
+      message = error.message;
+    } else if (error.error && error.error.message) {
+      message = error.error.message;
+    } else if (error.statusText) {
+      message = `HTTP Error: ${error.statusText}`;
+    } else if (typeof error === 'string') {
+      message = error;
+    }
   }
+  
+  // Log the detailed error for debugging
+  console.error('Search service error:', error);
+  
+  return message;
 }
 
 

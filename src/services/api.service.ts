@@ -85,6 +85,7 @@ getDataById<T>(endpoint: string, id: any): Observable<T> {
     if (villageId !== undefined && villageId !== null) params = params.set('villageId', villageId.toString());
     if (search?.trim()) params = params.set('search', search.trim());
   
+    // Updated to match the new API structure
     return this.http.get<T>(`${this.apiUrl}/website/filter`, { headers: this.getHeaders(), params })
       .pipe(
         timeout(this.defaultTimeout),
@@ -169,7 +170,7 @@ private handleError(error: any): Observable<never> {
         errorMessage = 'Unauthorized access. Please log in again.';
         break;
       case 403:
-        errorMessage = 'Forbidden. You don’t have permission to access this resource.';
+        errorMessage = "Forbidden. You don't have permission to access this resource.";
         break;
       case 404:
         errorMessage = 'Resource not found. Please try again.';

@@ -7,19 +7,19 @@ export enum GlobalEnums {
 }
 
 export enum paginatedEndpoints{
-    villages = 'website/paginated-committees',
-    products ='website/paginated-products',
-    homestays ='website/paginated-homestays',
-    activities ='website/paginated-activities',
-    events ='website/paginated-events'
+    villages = 'committees/paginated-committees',
+    products = 'products/paginated-products',
+    homestays = 'homestays/paginated-homestays',
+    activities = 'Activities/paginated-activities',
+    events = 'events/paginated-events'
 }
 
 export enum getByIDEndpoints{
-    villages = 'website/committee',
-    products ='website/product',
-    homestays ='website/homestay',
-    activities ='website/activity',
-    events ='website/event'
+    villages = 'committees',
+    products = 'products',
+    homestays = 'homestays',
+    activities = 'Activities',
+    events = 'events'
 }
 
 export enum placeholder{
