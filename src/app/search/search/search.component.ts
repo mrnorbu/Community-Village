@@ -7,6 +7,7 @@ import { IsNumberPipe } from '../../pipes/isNumber.pipe';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { ActivatedRoute ,UrlSegment,RouterLink, RouterModule} from '@angular/router';
+import { SearchService } from '../../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,7 @@ import { ActivatedRoute ,UrlSegment,RouterLink, RouterModule} from '@angular/rou
 })
 export class SearchComponent implements OnInit {
   private apiService = inject(ApiService)
+  private searchService=inject(SearchService)
   private fb=inject( FormBuilder)
   private router=inject( ActivatedRoute)
 
@@ -41,8 +43,6 @@ districts:any[]=[];   //to store districts data open in dropdown
 villages:any[]=[];   //to store village filter after selecting district
 
 
-
-
 userInputs: FormGroup = this.fb.group({
   region: [''],          // Default value as an empty string
   village: [''],         // Default value as an empty string
@@ -58,7 +58,7 @@ ngOnInit() {
   this.drillDownDistrict();
 
   // Only run loadPaginatedData() if no valid segment was found
-  if (!hasValidSegment) {
+  if (!hasValidSegment||hasValidSegment) {
     this.loadPaginatedData();
   }
 }
@@ -70,7 +70,6 @@ getFirstSegment(): boolean {
     if (data['type']) {
       // If segment exists, set active tab and load data
       this.setActiveTabParam(data['type']);
-      this.loadPaginatedData(); // Run only if segment is found
       segmentFound = true;
     }
   });
@@ -78,7 +77,6 @@ getFirstSegment(): boolean {
   return segmentFound;
 }
 
-    
       setActiveTabParam(path:string){
         switch (path) {
           case 'village':
@@ -99,21 +97,9 @@ getFirstSegment(): boolean {
           default:
             console.warn('Invalid tab selected!');
         }
-         
-       
       }
 
-      getClass(input:number){
-        return getDynamicClass(input);
-      }
-      getDaysLeft(eventDate: string): string {
-        const event = new Date(eventDate);
-        const today = new Date(); // Use a fresh instance to avoid stale values
-        const diffTime = event.getTime() - today.getTime();
-        const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-        return daysLeft <= 0 ? 'Ended' : `${daysLeft} days left`;
-      } 
-
+    
 
       drillDownDistrict(): void {
         this.apiService.getData('website/districts').subscribe({
@@ -293,7 +279,6 @@ loadPaginatedData(): void {
           // Enrich the fetched data with additional properties
           this.paginatedData = data.data.map((item: any) => ({
             ...item,
-            image: 'https://placehold.co/600x400', // Add static image
             category: 'Handcraft', // Add category property
             price: 1000, // Add price property
           }));
@@ -358,5 +343,18 @@ onPageChange(pageNumber: number): void {
       getProfileImage(imageArray: any[]): string {
         return getProfileImage(imageArray);
       }
+
+      getClass(input:number){
+        return getDynamicClass(input);
+      }
+      
+      getDaysLeft(eventDate: string): string {
+        const event = new Date(eventDate);
+        const today = new Date(); // Use a fresh instance to avoid stale values
+        const diffTime = event.getTime() - today.getTime();
+        const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+        return daysLeft <= 0 ? 'Ended' : `${daysLeft} days left`;
+      } 
+      
 
 }

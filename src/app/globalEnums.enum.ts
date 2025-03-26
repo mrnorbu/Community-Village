@@ -23,5 +23,9 @@ export enum getByIDEndpoints{
 }
 
 export enum placeholder{
-    image='https://placehold.co/600x400'
+    image='assets/images/general/no-image-found.jpg'
+}
+
+export enum search{
+    itemPerPage =5
 }

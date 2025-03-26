@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { getDynamicClass,destroyOwlInstance,initializeOwlCarousel } from '../../utils/utils';
-import { EventsService } from '../../../services/events.service';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
 import { RouterModule ,RouterLink} from '@angular/router';
@@ -17,13 +16,13 @@ export class EventsCarouselComponent implements OnInit, AfterViewInit, OnDestroy
 
    private apiService = inject(ApiService)
 
-  constructor(private eventService:EventsService) { }
+  constructor() { }
 
   Events:any[]=[]
   paginatedEvent:any=[]
 
   ngOnInit() {
-    this.Events=this.eventService.getEvent()
+    this.Events;
     this.getEvents();
   }
   

@@ -88,16 +88,8 @@ loadCommitteeData(id:number): void {
         // Check if data is valid
         if (data) {
           // Enrich with additional properties (no need for mapping here)
-          this.committeeInfo = {
-            ...data,
-            images: [
-              'https://placehold.co/600x400', // Add static image
-              'https://placehold.co/600x400',
-              'https://placehold.co/600x400',
-              'https://placehold.co/600x400'
-            ]
-          };
-
+          this.committeeInfo =data;
+         
         } else {
           // Handle no data scenario
           this.handleNoDataFound();

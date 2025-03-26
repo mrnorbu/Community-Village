@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { initializeOwlCarousel,destroyOwlInstance } from '../../utils/utils';
-import { getByIDEndpoints } from '../../globalEnums.enum';
+import { getByIDEndpoints, placeholder } from '../../globalEnums.enum';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,7 @@ export class ProductProfleComponent implements OnInit {
     loading :boolean=false;
     noDataFound:boolean=false;
     productInfo:any=[]
+    placeholder:placeholder=placeholder.image
     
     private apiService = inject(ApiService)
     
@@ -60,15 +61,7 @@ export class ProductProfleComponent implements OnInit {
               // Check if data is valid
               if (data) {
                 // Enrich with additional properties (no need for mapping here)
-                this.productInfo = {
-                  ...data,
-                  images: [
-                    'https://placehold.co/600x400', // Add static image
-                    'https://placehold.co/600x400',
-                    'https://placehold.co/600x400',
-                    'https://placehold.co/600x400'
-                  ]
-                };
+                this.productInfo =   data;
     
                 setTimeout(() => {
                   initializeOwlCarousel('.productImageSwiper',false,true,1,false,[1,1,1])

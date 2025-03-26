@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit ,AfterViewInit,OnDestroy, inject} from '@angular/core';
 import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
-import { HomestaysService } from '../../../services/homestays.service';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
 

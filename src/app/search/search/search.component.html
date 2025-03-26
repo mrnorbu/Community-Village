@@ -123,7 +123,7 @@
                       <!-- Please wait text -->
                       <p class="mt-4 text-gray-700 text-lg font-medium">Please wait...</p>
                     </div>
-                  </div>
+                </div>
                   
                   
     <!---------------------------------Villages------------------------------------------->
@@ -132,7 +132,8 @@
                *ngFor="let village of paginatedData  | paginate: { itemsPerPage: itemPerPage, currentPage: page,totalItems:totalItems }; let i= index">
                 <div class="flex flex-col md:flex-row h-auto md:h-48">
                     <div class="w-full md:w-48 h-48 md:h-full relative overflow-hidden">
-                        <img [src]="getProfileImage(village.images)" [alt]="village.committeeName" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"/>
+                        <img [src]="getProfileImage(village.images)" [alt]="village.committeeName" 
+                        class="w-full h-full object-fill transform group-hover:scale-105 transition duration-500"/>
                     </div>
                     <div class="flex-1 p-4 flex flex-col">
                         <div class="flex-grow">
@@ -147,10 +148,7 @@
                         </div>
                         <div class="mt-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
                             <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-                                <span class="flex items-center" *ngFor="let tag of village.tags">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-                                    </svg>
+                                <span class="flex items-center bg-gray-100 rounded-[5px]" *ngFor="let tag of village.tags">
                                     {{tag}}
                                 </span>
                                 <span class="flex items-center">
@@ -186,7 +184,8 @@
             <div class="flex-grow">
                 <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                     <h4 class="text-lg font-semibold">{{homestay.homestayName}}</h4>
-                    <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 w-fit hover:text-white" [ngClass]="getClass(i+1)">{{homestay.districtName}}</span>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-medium
+                     bg-green-500/10 text-green-500 w-fit hover:text-white" [ngClass]="getClass(i+1)">{{homestay.districtName}}</span>
                 </div>
                 <p class="text-gray-700 mt-2 line-clamp-2 text-sm">{{homestay.description}}</p>
                 <div class="mt-2 flex flex-wrap gap-2">
@@ -365,7 +364,8 @@
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                         <h4 class="text-lg font-semibold">{{event.eventName}}</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 hover:text-white" [ngClass]="getClass(i+1)">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium
+                             bg-green-500/10 text-green-500 hover:text-white" [ngClass]="getClass(i+1)">
                                 {{event.districtName}}
                             </span>
                          
@@ -395,7 +395,8 @@
                             </span>
                         </div>
 
-                        <a [routerLink]="['/event',event.eventId]" class="inline-flex items-center w-full md:w-fit border border-[#1C2A0E] rounded-full px-3 py-1 text-sm text-[#1C2A0E] hover:bg-[#1C2A0E] hover:text-white transition-all duration-300 justify-center md:justify-start">
+                        <a [routerLink]="['/event',event.eventId]" class="inline-flex items-center w-full md:w-fit border border-[#1C2A0E] rounded-full px-3 py-1 text-sm text-[#1C2A0E] hover:bg-[#1C2A0E]
+                         hover:text-white transition-all duration-300 justify-center md:justify-start">
                             Know More
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
