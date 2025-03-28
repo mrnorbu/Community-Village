@@ -80,3 +80,16 @@ export function getProfileImage(imageArray: any[]): string {
   return profileImage?.imageUrl ?? placeholderImage;
 }
 
+// District-specific color mapping
+const districtColors: { [key: string]: { bg: string, text: string, hover: string } } = {
+  'East Sikkim': { bg: 'bg-blue-500/10', text: 'text-blue-500', hover: 'hover:bg-blue-500' },
+  'West Sikkim': { bg: 'bg-green-500/10', text: 'text-green-500', hover: 'hover:bg-green-500' },
+  'North Sikkim': { bg: 'bg-purple-500/10', text: 'text-purple-500', hover: 'hover:bg-purple-500' },
+  'South Sikkim': { bg: 'bg-red-500/10', text: 'text-red-500', hover: 'hover:bg-red-500' }
+};
+
+export function getDistrictClass(region: string): string {
+  const color = districtColors[region] || districtColors['East Sikkim']; // Default to East Sikkim if region not found
+  return `${color.bg} ${color.text} ${color.hover}`;
+}
+

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage } from '../../utils/utils';
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage, getDistrictClass } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
@@ -29,43 +29,38 @@ export class ProductsCarouselComponent implements OnInit, AfterViewInit, OnDestr
     destroyOwlInstance('.product-carousel')
   }
 
+  getClass(region: string): string {
+    return getDistrictClass(region);
+  }
 
-getClass(input:number){
-  return getDynamicClass(input);
-}
-
-
-getProducts(): void {
-  this.apiService.getPaginatedData(paginatedEndpoints.products,1,4).subscribe({
-    next: (data: any) => {
+  getProducts(): void {
+    this.apiService.getPaginatedData(paginatedEndpoints.products,1,4).subscribe({
+      next: (data: any) => {
      
-      if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
-        this.products = data.data
-            }
+        if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
+          this.products = data.data
+        }
 
-    if (this.products.length > 0) {
-      setTimeout(() => {
-        initializeOwlCarousel('.product-carousel',true,true,24,false,[1,3,4]);
-      }, 300);
-    }
+        if (this.products.length > 0) {
+          setTimeout(() => {
+            initializeOwlCarousel('.product-carousel',true,true,24,false,[1,3,4]);
+          }, 300);
+        }
 
-    },
-    error: (error:any) => {
-      console.error('Error fetching Products:', error);
-      // Optionally, set a default value or handle the error
-      this.products = []; // Fallback to an empty array
-    },
-    complete: () => {
-      // Optional: Handle completion logic if needed
-      console.log('Products fetch completed.');
-    
-    }
-  });
-}
+      },
+      error: (error:any) => {
+        console.error('Error fetching Products:', error);
+        // Optionally, set a default value or handle the error
+        this.products = []; // Fallback to an empty array
+      },
+      complete: () => {
+        // Optional: Handle completion logic if needed
+        console.log('Products fetch completed.');
+      }
+    });
+  }
 
-getProfileImage(images:any[]):string{
-  return getProfileImage(images)
-}
-
-
+  getProfileImage(images:any[]):string{
+    return getProfileImage(images)
+  }
 }

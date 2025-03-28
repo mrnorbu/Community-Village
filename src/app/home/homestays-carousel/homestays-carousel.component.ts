@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit ,AfterViewInit,OnDestroy, inject} from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage } from '../../utils/utils';
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance, getProfileImage, getDistrictClass } from '../../utils/utils';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
@@ -29,48 +29,41 @@ export class HomestaysCarouselComponent implements OnInit ,AfterViewInit,OnDestr
     destroyOwlInstance('.homestays-carousel')
   }
 
+  // Updated to use district-specific colors
+  getClass(region: string): string {
+    return getDistrictClass(region);
+  }
 
-getClass(input:number){
-  return getDynamicClass(input);
-}
+  getHomestays(): void {
+    this.apiService.getPaginatedData(paginatedEndpoints.homestays, 1, 5).subscribe({
+      next: (data: any) => {
+        console.log('Raw Homestays API Response:', data);
+        console.log('Total Records:', data?.totalRecords);
+        console.log('Current Page:', data?.pageNumber);
+        console.log('Page Size:', data?.pageSize);
+        
+        if (data && data.data && Array.isArray(data.data) && data.data.length > 0) {
+          console.log('Number of Homestays Loaded:', data.data.length);
+          console.log('Homestays Data:', data.data);
+          this.homestays = data.data;
 
-
- 
-getHomestays(): void {
-  this.apiService.getPaginatedData(paginatedEndpoints.homestays,1,5).subscribe({
-    next: (data: any) => {
-     
-      if (data && data.data && data.data.length > 0) {
-        this.homestays = data.data;
+          setTimeout(() => {
+            initializeOwlCarousel('.homestays-carousel', true, true, 5, false, [2, 3, 4])
+          }, 300);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error fetching Homestays:', error);
+        this.homestays = [];
+      },
+      complete: () => {
+        console.log('Homestays API call completed');
       }
+    });
+  }
 
-     // Ensure carousel initializes after DOM updates
-     if (this.homestays.length > 0) {
-      setTimeout(() => {
-        initializeOwlCarousel('.homestays-carousel',true,true,5,false,[1,2,5]) 
-      }, 300);// Small delay to ensure DOM is updated
-    }    
-
-    
-  
-    },
-    error: (error:any) => {
-      console.error('Error fetching Committies:', error);
-      // Optionally, set a default value or handle the error
-      this.homestays = []; // Fallback to an empty array
-    },
-    complete: () => {
-      // Optional: Handle completion logic if needed
-      console.log('Homestays fetch completed.');
-    
-    }
-  });
-}
-
-getProfileImage(images:any[]):string
-{
-  return getProfileImage(images);
-}
-
-
+  getProfileImage(images:any[]):string
+  {
+    return getProfileImage(images);
+  }
 }

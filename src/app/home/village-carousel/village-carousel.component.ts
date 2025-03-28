@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, AfterViewInit, OnDestroy, inject } from '@angular/core';
-import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance,getProfileImage} from '../../utils/utils'; 
+import { getDynamicClass,initializeOwlCarousel,destroyOwlInstance,getProfileImage, getDistrictClass } from '../../utils/utils'; 
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { paginatedEndpoints } from '../../globalEnums.enum';
@@ -16,15 +16,12 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
   constructor(){
   }
 
-
-  villagesCommunity:any[]=[]
-
+  villages: any[] = [];
 
   ngOnInit(): void {
-   this.getVillages();
+    this.getVillages();
   }
 
-  
   ngAfterViewInit() {
    
   }
@@ -33,11 +30,10 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
     destroyOwlInstance('.village-carousel')
   }
 
-
-  getClass(input:number){
-    return getDynamicClass(input);
+  // Updated to use district-specific colors
+  getClass(region: string): string {
+    return getDistrictClass(region);
   }
-
 
   getVillages(): void {
     this.apiService.getPaginatedData(paginatedEndpoints.villages,1,4).subscribe({
@@ -46,21 +42,21 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
           // Add a placeholder image to each committee
           if (data && data.data && data.data.length > 0) {
         
-            this.villagesCommunity = data.data
+            this.villages = data.data
           }
 
 
-      if (this.villagesCommunity.length > 0) {
+      if (this.villages.length > 0) {
         setTimeout(() => {
-          initializeOwlCarousel('.village-carousel',true,true,5,false,[2,3,4])
-         }, 300);
+          initializeOwlCarousel('.village-carousel', true, true, 5, false, [2, 3, 4])
+        }, 0)
       }
 
       },
       error: (error:any) => {
         console.error('Error fetching Committies:', error);
         // Optionally, set a default value or handle the error
-        this.villagesCommunity = []; // Fallback to an empty array
+        this.villages = []; // Fallback to an empty array
       },
       complete: () => {
         // Optional: Handle completion logic if needed
@@ -69,8 +65,6 @@ export class VillageCarouselComponent implements OnInit, AfterViewInit, OnDestro
       }
     });
   }
-
-
 
    // Utility function is now accessible
    getProfileImage(imageArray: any[]): string {
